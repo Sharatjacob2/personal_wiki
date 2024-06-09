@@ -4,11 +4,12 @@ import re
 
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
 
+# setting the llm as mistral
 repo_id = "mistralai/Mistral-7B-Instruct-v0.2"
 llm = HuggingFaceHub(repo_id=repo_id, model_kwargs={"temperature":0.9, "max_length": 1024})
- 
+
+# function that is called by the three llm agents to create the prompt
 def prompt_writer(sys_msg, token_count):
-  printed_sys_msg = sys_msg[0:sys_msg.find("[/INST]")]
   # user_message = f"Q: {user_input} A: "
   prompt = f"<s>[INST] {sys_msg} Answer:"
   print("prompter working")
@@ -26,6 +27,8 @@ def prompt_writer(sys_msg, token_count):
   print(temp)
   return temp
 
+
+# llm that generates the first explanation
 def explainer(topic):
   print("explainer working")
   system_message = '''You are a proficient scientist, known for your adept teaching skills. 
@@ -35,12 +38,15 @@ def explainer(topic):
   explanation = prompt_writer(system_message + topic, 1500)
   return explanation
 
+
+# llm that identifies all the relevant terms in the explanation
 def tagger(explanation):
   print("tagger working")
   system_message = '''You identify ALL the TECHNICAL/MATHEMATICAL/SCIENTIFIC terms in a paragraph. You print ONLY the TEN most technical terms in a numerical list. The following are instructions to follow. Print the terms EXACTLY as referred to in the paragraph. Avoid brackets. Choose wisely. Restrict yourself to ONLY a single term per item on the list. Limit the terms to one or two words, if possible. Avoid completion of the paragraph. Only do the task assigned to you. Generate nothing other than the list. Do not list terms that belong to analogies used in the paragraph. Do not explain any term. Avoid generating terms that aren't in the paragraph. Avoid commas. [/INST] Paragraph:'''
   tags = prompt_writer(system_message + explanation, 256)
   return tags
 
+# llm that explains the new topic in context of the old topic
 def in_context_explainer(context_topic, topic):
   print("in_context_explainer working")
   system_message = f'''You are uniquely skilled at explaining one topic in the context of another topic. You answer with a good explanation of the topic and why it matters to the other topic. [/INST] 
@@ -52,6 +58,7 @@ def in_context_explainer(context_topic, topic):
   print(tags)
   return context_explanation, tags
 
+# function that tries to preserve the case of the tags when reformatting the explanation
 def update_case_based_on_string(main_string, substrings):
     updated_substrings = []
 
@@ -71,6 +78,7 @@ def update_case_based_on_string(main_string, substrings):
 
     return updated_substrings
 
+# function that combines the explainer and tagger llms to generate the modified explanation
 def main_explainer(topic):
   explanation = explainer(topic)
   tags = tagger(explanation)
@@ -107,10 +115,5 @@ def tag_handler(unhandled_tags):
 
   print(tags)
   return tags
-
-
-# so take in context topic and main topic
-# new system message
-# generate explanation
 
 

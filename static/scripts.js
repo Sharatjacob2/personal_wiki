@@ -1,5 +1,3 @@
-let idCounter = 0;
-
 document.getElementById('run-btn').addEventListener('click', function () {
     const userInput = document.getElementById('user-input').value;
     fetch('/llm_output', {
@@ -18,8 +16,7 @@ document.getElementById('run-btn').addEventListener('click', function () {
                 // Replace each occurrence of the word with the same word wrapped in <b> tags
                 const regex = new RegExp(`\\b${escapeRegExp(word)}\\b`, 'gi');
                 if (regex.test(formattedResult)) {
-                    formattedResult = formattedResult.replace(regex, `<button class="tag" data-maintopicvalue="${userInput}" id="tag-${idCounter}">` + word + `</button>`);
-                    idCounter = idCounter + 1;
+                    formattedResult = formattedResult.replace(regex, `<button class="tag" data-maintopicvalue="${userInput}">` + word + `</button>`);
                     console.log(word)
                 }
                 else {
@@ -40,7 +37,6 @@ container_explanation.addEventListener('click', function(event) {
     });
 
 function newTag(button) {
-    const buttonId = this.id;
     console.log(button);
     const mainTopic = button.dataset.maintopicvalue;
     const context_topic = button.textContent;
@@ -60,7 +56,7 @@ function newTag(button) {
                 // Replace each occurrence of the word with the same word wrapped in <b> tags
                 const regex = new RegExp(`\\b${escapeRegExp(word)}\\b`, 'gi');
                 if (regex.test(formattedResult)) {
-                    formattedResult = formattedResult.replace(regex, `<button class="tag" data-maintopicvalue="${context_topic}" id="tag-${idCounter}">` + word + `</button>`);
+                    formattedResult = formattedResult.replace(regex, `<button class="tag" data-maintopicvalue="${context_topic}">` + word + `</button>`);
                     console.log(word)
                 }
                 else {
@@ -71,7 +67,7 @@ function newTag(button) {
 
             const newParagraph = document.createElement('p');
             newParagraph.innerHTML = formattedResult;
-
+            newParagraph.className = "context_para"
             container_explanation.insertBefore(newParagraph, button.parentElement);
         });
 

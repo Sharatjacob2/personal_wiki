@@ -5,9 +5,14 @@ body {
 }
 
 .explained {
-    width: 450px;
+    /* width: 450px; */
     height: 300px;
     text-align: left;
     margin: auto;
     padding-top: 50px;
+}
+
+.context_para{
+    padding-left: 10px;
+    padding-right: 10px;
 }

@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.explained {
+    width: 450px;
+    height: 300px;
+    text-align: left;
+    margin: auto;
+    padding-top: 50px;
+}

@@ -52,20 +52,18 @@ def in_context_explainer(context_topic, topic):
   Explain {context_topic} in the context of {topic}. '''
   context_explanation = prompt_writer(system_message, 256)
   tags = tagger(context_explanation)
-  tags = tag_handler(tags)
-
-  print(tags)
+  tags = tag_handler(tags, context_topic)
   return context_explanation, tags
 
 # function that combines the explainer and tagger llms to generate the modified explanation
 def main_explainer(topic):
   explanation = explainer(topic)
   tags = tagger(explanation)
-  tags = tag_handler(tags)
+  tags = tag_handler(tags, topic)
   return explanation, tags
 
 # bunch of wild hard-coded data processing style stuff because the llm will not listen to me
-def tag_handler(unhandled_tags):
+def tag_handler(unhandled_tags, topic_check):
   tags = unhandled_tags
   tags = re.split('\d.',tags)
   tags.pop(0)
@@ -91,17 +89,19 @@ def tag_handler(unhandled_tags):
       tags[i] = tags[i][0:tags[i].find('(')]
     if len(tags[i]) >= 2:
       if tags[i][0] == " " and  tags[i][-1] == " ":  
-        print((tags[i])) 
         tags[i] = tags[i][1:-1]
       if tags[i][0] == "." and tags[i][1] == " ":
         tags[i] = tags[i][2:]
+      if tags[i][0] == " ":  
+        tags[i] = tags[i][1:]
     if tags[i] == '\n' or tags[i] == '':
+      tags.pop(i)
+    if tags[i] == topic_check:
       tags.pop(i)
     print(tags[i])
     i = i+1
 
   print(tags)
-  print(len(tags[0]))
   return tags
 
 

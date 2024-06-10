@@ -1,3 +1,2 @@
 Flask
-langchain
-langchain_community
+huggingface_hub

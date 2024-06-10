@@ -23,6 +23,9 @@ def prompt_writer(sys_msg, token_count):
   print("prompter generated")
 
   temp = temp[temp.find("Answer:")+2:]
+  temp = r"%r" % temp
+  temp = temp[1:-1]
+  temp = temp.replace(r"\n","<br>")
   print(temp)
   return temp
 
@@ -79,8 +82,8 @@ def tag_handler(unhandled_tags, topic_check):
     if tags[i] == '\n' or tags[i] == '':
       tags.pop(i)
       continue 
-    if '\n' in tags[i]:
-      tags[i] = tags[i][0:tags[i].find('\n')]
+    if '<br>' in tags[i]:
+      tags[i] = tags[i][0:tags[i].find('<br>')]
     if ':' in tags[i]:
       tags[i] = tags[i][0:tags[i].find(':')]  
     if ',' in tags[i]:
@@ -98,6 +101,7 @@ def tag_handler(unhandled_tags, topic_check):
       tags.pop(i)
     if tags[i].lower() in topic_check.lower():
       tags.pop(i)
+      continue 
     print(tags[i])
     i = i+1
 

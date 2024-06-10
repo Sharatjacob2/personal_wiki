@@ -96,7 +96,7 @@ def tag_handler(unhandled_tags, topic_check):
         tags[i] = tags[i][1:]
     if tags[i] == '\n' or tags[i] == '':
       tags.pop(i)
-    if tags[i] == topic_check:
+    if tags[i].lower() in topic_check.lower():
       tags.pop(i)
     print(tags[i])
     i = i+1

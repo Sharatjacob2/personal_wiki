@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    color: antiquewhite;
+    color: #faebd7;
     margin-top: 50px;
     background-color: rgb(14, 3, 25);
 }
@@ -33,7 +33,7 @@ body {
     border-style: hidden;
     padding: 25px;
     border-radius: 5px;
-    background-color: rgb(33, 11, 53);
+    background-color: #210b35;
     margin-left: 10px;
     margin-right: 10px;
     font-size: 20px;
@@ -45,7 +45,7 @@ body {
     padding: 1px 3px;
     color: rgb(226, 184, 255);
     border: none;
-    background-color: rgb(33, 11, 53);
+    background-color: #210b35;
     font-size: 20px;
     font-family: Josefin Slab;
     font-weight: 300;
@@ -64,6 +64,7 @@ input[type=text] {
     font-weight: 700;
     margin: 0px;
     font-size: 20px;
+    width: 800px;
     
 }
 
@@ -77,4 +78,24 @@ input[type=text] {
     font-size: 20px;
     margin: 0;
     padding: 0px 20px;
+}
+
+#run-btn:hover,:active{
+    background-color: rgb(33, 11, 53);
+    color: rgb(226, 184, 255);
+}
+
+
+.footer{
+    font-family: Josefin Slab;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    bottom: 10px;
+    opacity: 0.4;
+}
+
+.hidden{
+    display: none;
 }

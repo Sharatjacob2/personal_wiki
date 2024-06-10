@@ -22,7 +22,7 @@ def prompt_writer(sys_msg, token_count):
   ) # 
   print("prompter generated")
 
-  temp = temp[temp.find("Answer:")+3:]
+  temp = temp[temp.find("Answer:")+2:]
   print(temp)
   return temp
 
@@ -69,29 +69,37 @@ def tag_handler(unhandled_tags):
   tags = unhandled_tags
   tags = re.split('\d.',tags)
   tags.pop(0)
-  tags_length = len(tags) - 1
+  # tags_length = len(tags)
+  i = 0
   print(tags)
 
-  for i in range(tags_length):
+  while i < len(tags):
+    print(i)
+    if len(tags[i]) <= 3:
+      tags.pop(i)
+      continue
+    if tags[i] == '\n' or tags[i] == '':
+      tags.pop(i)
+      continue 
     if '\n' in tags[i]:
       tags[i] = tags[i][0:tags[i].find('\n')]
     if ':' in tags[i]:
       tags[i] = tags[i][0:tags[i].find(':')]  
     if ',' in tags[i]:
       tags[i] = tags[i][0:tags[i].find(',')]
-    if len(tags[i]) >=2:      
-      if tags[i][0] == " " and  tags[i][-1] == " ":   
-        tags[i] = tags[i][1:-1]
     if '(' in tags[i]:
       tags[i] = tags[i][0:tags[i].find('(')]
-    if tags[i] == "":
+    if len(tags[i]) >= 2:
+      if tags[i][0] == " " and  tags[i][-1] == " ":  
+        print((tags[i])) 
+        tags[i] = tags[i][1:-1]
+    if tags[i] == '\n' or tags[i] == '':
       tags.pop(i)
-      tags_length = tags_length - 1
-
-  while len(tags) > 10:
-    tags.pop()
+    print(tags[i])
+    i = i+1
 
   print(tags)
+  print(len(tags[0]))
   return tags
 
 

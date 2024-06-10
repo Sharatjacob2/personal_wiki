@@ -1,5 +1,5 @@
 [build]
-  publish = "public"
+  publish = "templates"
   command = "pip install -r requirements.txt"
 
 [dev]

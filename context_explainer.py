@@ -93,6 +93,8 @@ def tag_handler(unhandled_tags):
       if tags[i][0] == " " and  tags[i][-1] == " ":  
         print((tags[i])) 
         tags[i] = tags[i][1:-1]
+      if tags[i][0] == "." and tags[i][1] == " ":
+        tags[i] = tags[i][2:]
     if tags[i] == '\n' or tags[i] == '':
       tags.pop(i)
     print(tags[i])

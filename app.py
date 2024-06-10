@@ -23,5 +23,5 @@ def llm_context_output():
     return jsonify({"explanation": output_explanation, "tags": output_tags})
 
 # if __name__ == '__main__':
-#     app.run(port=5000, debug=False)
+#     app.run(port=5000, debug=True)
 

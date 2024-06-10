@@ -1,12 +1,13 @@
 import os
-from langchain import HuggingFaceHub
+# from langchain import HuggingFaceHub
+from huggingface_hub import InferenceClient
 import re
 
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
 
 # setting the llm as mistral
 repo_id = "mistralai/Mistral-7B-Instruct-v0.2"
-llm = HuggingFaceHub(repo_id=repo_id, model_kwargs={"temperature":0.9, "max_length": 1024})
+llm = InferenceClient(model=repo_id,token="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")
 
 # function that is called by the three llm agents to create the prompt
 def prompt_writer(sys_msg, token_count):
@@ -15,15 +16,14 @@ def prompt_writer(sys_msg, token_count):
   print("prompter working")
 
   # Run the model
-  temp = llm(
-  prompt, # Prompt
-  max_tokens=token_count, # Generate upto
-  stop=["</s>"],
-  echo=False # Echo prompt
+  temp = llm.text_generation(
+  prompt=prompt, # Prompt
+  max_new_tokens=token_count, # Generate upto
+  stop_sequences=["</s>"],
   ) # 
   print("prompter generated")
 
-  temp = temp[temp.find("Answer:")+7:]
+  temp = temp[temp.find("Answer:")+3:]
   print(temp)
   return temp
 
@@ -35,7 +35,7 @@ def explainer(topic):
   You are skilled at taking a topic and answering with a large detailed explanation. 
   Avoid bullet points. [/INST] 
   Topic:'''
-  explanation = prompt_writer(system_message + topic, 1500)
+  explanation = prompt_writer(system_message + topic, 256)
   return explanation
 
 
@@ -51,39 +51,18 @@ def in_context_explainer(context_topic, topic):
   print("in_context_explainer working")
   system_message = f'''You are uniquely skilled at explaining one topic in the context of another topic. You answer with a good explanation of the topic and why it matters to the other topic. [/INST] 
   Explain {context_topic} in the context of {topic}. '''
-  context_explanation = prompt_writer(system_message, 1500)
+  context_explanation = prompt_writer(system_message, 256)
   tags = tagger(context_explanation)
   tags = tag_handler(tags)
 
   print(tags)
   return context_explanation, tags
 
-# function that tries to preserve the case of the tags when reformatting the explanation
-def update_case_based_on_string(main_string, substrings):
-    updated_substrings = []
-
-    for substring in substrings:
-        # Create a case-insensitive search pattern
-        pattern = re.compile(re.escape(substring), re.IGNORECASE)
-        match = pattern.search(main_string)
-
-        if match:
-            # Find the matched substring in the original string
-            matched_substring = match.group()
-            # Update the case of the substring in the list to match the original string
-            updated_substrings.append(matched_substring)
-        else:
-            # If the substring is not found, keep it as is
-            updated_substrings.append(substring)
-
-    return updated_substrings
-
 # function that combines the explainer and tagger llms to generate the modified explanation
 def main_explainer(topic):
   explanation = explainer(topic)
   tags = tagger(explanation)
   tags = tag_handler(tags)
-  tags = update_case_based_on_string(explanation,tags)
   return explanation, tags
 
 # bunch of wild hard-coded data processing style stuff because the llm will not listen to me

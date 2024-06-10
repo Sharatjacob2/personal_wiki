@@ -85,6 +85,10 @@ input[type=text] {
     color: rgb(226, 184, 255);
 }
 
+.active{
+    background-color: rgb(33, 11, 53);
+    color: rgb(226, 184, 255); 
+}
 
 .footer{
     font-family: Josefin Slab;

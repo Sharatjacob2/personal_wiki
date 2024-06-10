@@ -1,7 +1,6 @@
 const heightOfInput = document.getElementById("user-input").style.height;
 document.getElementById("run-btn").style.height = heightOfInput;
 
-
 document.getElementById('run-btn').addEventListener('click', function () {
     const userInput = document.getElementById('user-input').value;
     fetch('/llm_output', {
@@ -29,7 +28,7 @@ document.getElementById('run-btn').addEventListener('click', function () {
             });
             // Use innerHTML to render the formatted HTML
             document.getElementById('main_explanation').innerHTML = formattedResult;
-
+            button.classList.remove('active');
             const elements = document.querySelectorAll('.context_para');            
             // Convert NodeList to an array (optional but safer for compatibility)
             const elementsArray = Array.from(elements);
@@ -40,6 +39,20 @@ document.getElementById('run-btn').addEventListener('click', function () {
         
         });
 });
+
+const input = document.getElementById('user-input');
+const button = document.getElementById('run-btn');
+
+// Add event listener to input box for keypress event
+input.addEventListener('keypress', function(event) {
+    // Check if the Enter key is pressed (key code 13)
+    if (event.key === "Enter") {
+        // Trigger click event on the button
+        button.classList.add('active');
+        button.click();
+    }
+});
+
 
 let container_explanation = document.getElementById('explanation');
 

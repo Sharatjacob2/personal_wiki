@@ -25,10 +25,11 @@ body {
     font-size: 25px;
     font-weight: 500;
     margin-top: 3px;
+    margin-bottom: 40px;
 }
 
 
-.context_para {
+.context_para,.main_context_para {
     border-style: hidden;
     padding: 25px;
     border-radius: 5px;
@@ -51,13 +52,19 @@ body {
 
 }
 
-#user-input {
+input[type=text] {
     appearance: none;
     color: white;
-    background-color: rgb(33, 11, 53);
-    padding: 2px 5px;
+    background-color: rgb(14, 3, 25);
     outline: none;
-    border-radius: 3px;
+    padding: 0px;
+    font-family: Josefin Slab;
+    border: none;
+    border-bottom: 4px solid antiquewhite;
+    font-weight: 700;
+    margin: 0px;
+    font-size: 20px;
+    
 }
 
 #run-btn{
@@ -66,5 +73,8 @@ body {
     border: none;
     border-radius: 3px;
     font-family: Josefin Slab;
+    font-weight: 600;
     font-size: 20px;
+    margin: 0;
+    padding: 0px 20px;
 }

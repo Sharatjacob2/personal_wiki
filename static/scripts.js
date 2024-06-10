@@ -29,6 +29,15 @@ document.getElementById('run-btn').addEventListener('click', function () {
             });
             // Use innerHTML to render the formatted HTML
             document.getElementById('main_explanation').innerHTML = formattedResult;
+
+            const elements = document.querySelectorAll('.context_para');            
+            // Convert NodeList to an array (optional but safer for compatibility)
+            const elementsArray = Array.from(elements);
+            // Iterate over the array and remove each element
+            elementsArray.forEach(element => {
+                element.remove();
+            });
+        
         });
 });
 

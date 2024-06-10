@@ -1,3 +1,7 @@
+const heightOfInput = document.getElementById("user-input").style.height;
+document.getElementById("run-btn").style.height = heightOfInput;
+
+
 document.getElementById('run-btn').addEventListener('click', function () {
     const userInput = document.getElementById('user-input').value;
     fetch('/llm_output', {
@@ -30,11 +34,11 @@ document.getElementById('run-btn').addEventListener('click', function () {
 
 let container_explanation = document.getElementById('explanation');
 
-container_explanation.addEventListener('click', function(event) {
+container_explanation.addEventListener('click', function (event) {
     if (event.target.classList.contains('tag')) {
         newTag(event.target);
-    } 
-    });
+    }
+});
 
 function newTag(button) {
     console.log(button);

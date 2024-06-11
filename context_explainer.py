@@ -81,12 +81,28 @@ def tag_handler(unhandled_tags, topic_check):
       continue 
     if '<br>' in tags[i]:
       tags[i] = tags[i][0:tags[i].find('<br>')]
+      if len(tags[i]) <= 3:
+        tags.pop(i)
+        continue
+
     if ':' in tags[i]:
-      tags[i] = tags[i][0:tags[i].find(':')]  
+      tags[i] = tags[i][0:tags[i].find(':')]
+      if len(tags[i]) <= 3:
+        tags.pop(i)
+        continue
+
     if ',' in tags[i]:
       tags[i] = tags[i][0:tags[i].find(',')]
+      if len(tags[i]) <= 3:
+        tags.pop(i)
+        continue
+
     if '(' in tags[i]:
       tags[i] = tags[i][0:tags[i].find('(')]
+      if len(tags[i]) <= 3:
+        tags.pop(i)
+        continue
+
     if len(tags[i]) >= 2:
       if tags[i][0] == " " and  tags[i][-1] == " ":  
         tags[i] = tags[i][1:-1]
@@ -94,8 +110,10 @@ def tag_handler(unhandled_tags, topic_check):
         tags[i] = tags[i][2:]
       if tags[i][0] == " ":  
         tags[i] = tags[i][1:]
+
     if tags[i] == '\n' or tags[i] == '':
       tags.pop(i)
+      continue
     if tags[i].lower() in topic_check.lower():
       tags.pop(i)
       continue 

@@ -73,10 +73,17 @@ input[type=text] {
     margin: 0px;
     font-size: 20px;
     width: 800px;
-
 }
 
 @media only screen and (max-width: 800px) {
+    .tag:hover {
+        background-color: inherit;
+        color: rgb(226, 184, 255);
+    }
+    .tag:active {
+        color: #210b35;
+        background-color: rgb(226, 184, 255);
+    }
     .mainTitle {
         font-size: 30px;
     }
@@ -99,8 +106,9 @@ input[type=text] {
         width: max-content;
     }
 
-    .context_para,.main_context_para {
-        margin: 5px;
+    .context_para,
+    .main_context_para {
+        margin: 5px 10px;
         width: 70vw;
         align-self: center;
     }
@@ -118,7 +126,7 @@ input[type=text] {
     padding: 0px 20px;
 }
 
-.run-button:hover {
+.run-button:active {
     background-color: rgb(33, 11, 53);
     color: rgb(226, 184, 255);
 }
@@ -144,18 +152,17 @@ input[type=text] {
 
 ::-webkit-scrollbar {
     width: 15px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+}
+
+/* Track */
+::-webkit-scrollbar-track {
     background: rgb(226, 184, 255);
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: rgb(33, 11, 53);
     border-radius: 10px;
     width: 10px;
 
-  }
-  
+}

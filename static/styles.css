@@ -52,6 +52,13 @@ body {
 
 }
 
+.tag:hover{
+    color: #210b35;
+    background-color: rgb(226, 184, 255);
+    padding: 3px 10px;
+    border-radius: 2px;
+}
+
 input[type=text] {
     appearance: none;
     color: white;

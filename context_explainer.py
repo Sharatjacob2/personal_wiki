@@ -1,7 +1,5 @@
-# import os
 from huggingface_hub import InferenceClient
 import re
-# from dotenv import load_dotenv
 
 # setting the llm as mistral
 repo_id = "mistralai/Mistral-7B-Instruct-v0.2"

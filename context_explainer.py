@@ -1,11 +1,11 @@
-import os
+# import os
 from huggingface_hub import InferenceClient
 import re
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # setting the llm as mistral
 repo_id = "mistralai/Mistral-7B-Instruct-v0.2"
-llm = InferenceClient(model=repo_id,token= os.getenv("HUGGINGFACEHUB_API_TOKEN"))
+llm = InferenceClient(model=repo_id,token= "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")
 
 # function that is called by the three llm agents to create the prompt
 def prompt_writer(sys_msg, token_count):

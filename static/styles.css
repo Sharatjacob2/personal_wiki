@@ -99,7 +99,7 @@ input[type=text] {
         width: max-content;
     }
 
-    .main_context_para {
+    .context_para,.main_context_para {
         margin: 5px;
         width: 70vw;
         align-self: center;
@@ -140,3 +140,22 @@ input[type=text] {
 .titles {
     align-self: center;
 }
+
+
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgb(226, 184, 255);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(33, 11, 53);
+    border-radius: 10px;
+    width: 10px;
+
+  }
+  

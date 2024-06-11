@@ -22,6 +22,6 @@ def llm_context_output():
     output_explanation, output_tags  =  in_context_explainer(context, topic)
     return jsonify({"explanation": output_explanation, "tags": output_tags})
 
-# if __name__ == '__main__':
-#     app.run(port=5000, debug=True)
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
 

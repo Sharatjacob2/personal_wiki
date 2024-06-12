@@ -26,6 +26,7 @@ def prompt_writer(sys_msg, token_count):
   temp = r"%r" % temp
   temp = temp[1:-1]
   temp = temp.replace(r"\n","<br>")
+  temp = temp.replace(r"\'","")
   print(temp)
   return temp
 
@@ -44,7 +45,19 @@ def explainer(topic):
 # llm that identifies all the relevant terms in the explanation
 def tagger(explanation):
   print("tagger working")
-  system_message = '''You identify ALL the TECHNICAL/MATHEMATICAL/SCIENTIFIC terms in a paragraph. You print ONLY the TEN most technical terms in a numerical list. The following are instructions to follow. Print the terms EXACTLY as referred to in the paragraph. Avoid brackets. Choose wisely. Restrict yourself to ONLY a single term per item on the list. Limit the terms to one or two words, if possible. Avoid completion of the paragraph. Only do the task assigned to you. Generate nothing other than the list. Do not list terms that belong to analogies used in the paragraph. Do not explain any term. Avoid generating terms that aren't in the paragraph. Avoid commas. [/INST] Paragraph:'''
+  system_message = '''You identify ALL the TECHNICAL/MATHEMATICAL/SCIENTIFIC terms in a paragraph. 
+  You print ONLY the TEN most technical terms in a numerical list. 
+  The following are instructions to follow. 
+  Print the terms EXACTLY as referred to in the paragraph. 
+  Avoid brackets. Choose wisely. 
+  Restrict yourself to ONLY a single term per item on the list. 
+  Limit the terms to one or two words, if possible. 
+  Avoid completion of the paragraph. 
+  Only do the task assigned to you. 
+  Generate nothing other than the list. Avoid HTML tags.
+  Do not list terms that belong to analogies used in the paragraph. 
+  Do not explain any term. Avoid generating terms that aren't in the paragraph. Avoid commas. [/INST] 
+  Paragraph:'''
   tags = prompt_writer(system_message + explanation, 256)
   return tags
 

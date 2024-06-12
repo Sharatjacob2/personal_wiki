@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Josefin Slab;
     text-align: center;
     color: #faebd7;
     margin-top: 50px;
@@ -80,10 +80,12 @@ input[type=text] {
         background-color: inherit;
         color: rgb(226, 184, 255);
     }
+
     .tag:active {
         color: #210b35;
         background-color: rgb(226, 184, 255);
     }
+
     .mainTitle {
         font-size: 30px;
     }
@@ -135,10 +137,15 @@ input[type=text] {
     font-family: Josefin Slab;
     font-size: 20px;
     font-weight: 500;
-    margin-top: 100px;
-    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    /* margin-top: 100px; */
+    /* margin-bottom: 30px; */
+    /* position: fixed; */
     bottom: 10px;
     opacity: 0.4;
+    /* align-self: center; */
+    /* left: 35%; */
 }
 
 .hidden {
@@ -162,7 +169,23 @@ input[type=text] {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: rgb(33, 11, 53);
-    border-radius: 10px;
+    /* border-radius: 4px; */
     width: 10px;
 
+}
+
+.context_title{
+    font-size: 25px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.context_title_line{
+    width: 100%;
+    height: 1px;
+    background-color: antiquewhite;
+    margin-bottom: 15px;
+    opacity: 0.5;
 }

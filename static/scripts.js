@@ -27,7 +27,7 @@ document.getElementById('run-btn').addEventListener('click', function () {
                 }
             });
             // Use innerHTML to render the formatted HTML
-            document.getElementById('main_explanation').innerHTML = formattedResult;
+            document.getElementById('main_explanation').innerHTML = `<h2 class="context_title">${userInput}</h2><div class = "context_title_line"></div>` + formattedResult;
             const elements = document.querySelectorAll('.context_para');            
             // Convert NodeList to an array (optional but safer for compatibility)
             const elementsArray = Array.from(elements);
@@ -77,7 +77,7 @@ function newTag(button) {
             // Use innerHTML to render the formatted HTML
 
             const newParagraph = document.createElement('p');
-            newParagraph.innerHTML = formattedResult;
+            newParagraph.innerHTML = `<h2 class="context_title">${context_topic} w.r.t ${mainTopic}</h2><div class = "context_title_line"></div>` + formattedResult;
             newParagraph.className = "context_para"
             container_explanation.insertBefore(newParagraph, button.parentElement);
         });

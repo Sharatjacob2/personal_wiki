@@ -71,8 +71,8 @@ body {
 
 input[type=text] {
     appearance: none;
-    color: white;
-    background-color: rgb(14, 3, 25);
+    color: var(--white);
+    background-color: var(--darkpink);
     outline: none;
     padding: 0px;
     font-family: Josefin Slab;
@@ -81,12 +81,12 @@ input[type=text] {
     font-weight: 700;
     margin: 0px;
     font-size: 20px;
-    width: 800px;
+    width: 40vw;
 }
 
 .run-button {
-    background-color: rgb(226, 184, 255);
-    color: rgb(33, 11, 53);
+    background-color: var(--lightpink);
+    color: var(--darkpink);
     border: none;
     border-radius: 3px;
     font-family: Josefin Slab;
@@ -97,9 +97,28 @@ input[type=text] {
     cursor: pointer;
 }
 
-.run-button:active {
-    background-color: rgb(33, 11, 53);
-    color: rgb(226, 184, 255);
+.extra-info{
+    background-color: var(--white);
+    color: var(--explanation_bg_color);
+    border: none;
+    border-radius: 3px;
+    font-family: Josefin Slab;
+    font-weight: 600;
+    font-size: 20px;
+    /* margin: 8px 0px; */
+    padding: 0px 20px;
+    cursor: pointer;
+    height: 44px;
+}
+
+.extra-info:hover{
+    background-color: var(--explanation_bg_color);
+    color: var(--white);
+}
+
+.run-button:hover {
+    background-color: var(--darkpink);
+    color: var(--lightpink);
 }
 
 .footer {
@@ -107,14 +126,12 @@ input[type=text] {
     font-size: 20px;
     font-weight: 500;
     text-align: center;
-    width: 100%;
-    /* margin-top: 100px; */
-    /* margin-bottom: 30px; */
-    /* position: fixed; */
-    bottom: 10px;
+    position: relative;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%); 
     opacity: 0.4;
-    /* align-self: center; */
-    /* left: 35%; */
+    width: fit-content;
 }
 
 .hidden {
@@ -159,35 +176,6 @@ input[type=text] {
     opacity: 0.5;
 }
 
-.topbox {
-    background-color: rgb(33, 11, 53);
-    color: antiquewhite;
-    height: fit-content;
-    width: fit-content;
-    position: fixed;
-    top: 0px;
-    text-align: center;
-    cursor: pointer;
-    opacity: 0.4;
-}
-
-#help {
-    right: 0px;
-}
-
-#help:hover {
-    opacity: 1;
-}
-
-#about {
-    left: 0px;
-}
-
-#about:hover {
-    opacity: 1;
-}
-
-
 h4 {
     padding: 10px;
     margin: 0px;
@@ -204,7 +192,7 @@ h4 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 25px;
+    font-size: 20px;
     padding: 15px 30px 10px;
 }
 
@@ -247,11 +235,6 @@ h4 {
         margin-right: 10px;
     }
 
-    .footer {
-        margin-bottom: 5px;
-        bottom: 5px;
-    }
-
     .explained {
         width: max-content;
     }
@@ -269,4 +252,36 @@ h4 {
     .context_title{
         font-size: 20px;
     }
+}
+
+.inactive{
+    opacity: 0.5;
+}
+
+.number{
+    background-color: antiquewhite;
+    border-radius: 10px;
+    padding: 2px;
+    color: var(--explanation_bg_color);
+    font-size: 15px;
+    font-weight: 700;
+    width: 40px;
+    text-align: center;
+    display: inline-block;
+    margin: 5px 10px 10px;
+    cursor: pointer;
+}
+
+.numbers{
+    /* display: inline; */
+    width: fit-content;
+    position: relative;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); 
+
+}
+
+#main_content{
+    height: 100vh;
 }

@@ -1,5 +1,6 @@
 const heightOfInput = document.getElementById("user-input").style.height;
 document.getElementById("run-btn").style.height = heightOfInput;
+document.getElementById("extra-info").style.height = heightOfInput;
 
 document.getElementById('run-btn').addEventListener('click', function () {
     const userInput = document.getElementById('user-input').value;
@@ -28,14 +29,14 @@ document.getElementById('run-btn').addEventListener('click', function () {
             });
             // Use innerHTML to render the formatted HTML
             document.getElementById('main_explanation').innerHTML = `<h2 class="context_title">${userInput}</h2><div class = "context_title_line"></div>` + formattedResult;
-            const elements = document.querySelectorAll('.context_para');            
+            const elements = document.querySelectorAll('.context_para');
             // Convert NodeList to an array (optional but safer for compatibility)
             const elementsArray = Array.from(elements);
             // Iterate over the array and remove each element
             elementsArray.forEach(element => {
                 element.remove();
             });
-        
+
         });
 });
 
@@ -82,24 +83,34 @@ function newTag(button) {
             container_explanation.insertBefore(newParagraph, button.parentElement);
         });
 
-}    
+}
 
-document.getElementById('about').addEventListener('click', function() {
+document.getElementById('extra-info').addEventListener('click', function () {
     document.getElementById("aboutbox").classList.remove("hidden");
     document.getElementById("main_content").classList.add("blur_effect");
+    document.getElementById("two-about").classList.add("inactive");
 });
 
-document.getElementById('close_about').addEventListener('click', function() {
+document.getElementById('close_about').addEventListener('click', function () {
     document.getElementById("aboutbox").classList.add("hidden");
     document.getElementById("main_content").classList.remove("blur_effect");
 });
 
-document.getElementById('help').addEventListener('click', function() {
+document.getElementById('two-about').addEventListener('click', function () {
     document.getElementById("helpbox").classList.remove("hidden");
-    document.getElementById("main_content").classList.add("blur_effect");
+    document.getElementById("aboutbox").classList.add("hidden");
+    document.getElementById("one-help").classList.add("inactive");
 });
 
-document.getElementById('close_help').addEventListener('click', function() {
+document.getElementById('one-help').addEventListener('click', function () {
+    document.getElementById("aboutbox").classList.remove("hidden");
+    document.getElementById("helpbox").classList.add("hidden");
+    document.getElementById("two-about").classList.add("inactive");
+});
+
+
+document.getElementById('close_help').addEventListener('click', function () {
     document.getElementById("helpbox").classList.add("hidden");
     document.getElementById("main_content").classList.remove("blur_effect");
+    document.getElementById("two").classList.add("inactive");
 });

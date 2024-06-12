@@ -1,9 +1,17 @@
 body {
     font-family: Josefin Slab;
     text-align: center;
-    color: #faebd7;
+    color: var(--white);
     margin-top: 50px;
-    background-color: rgb(14, 3, 25);
+    background-color: #0e0319;
+    overflow: visible;
+}
+
+:root{
+    --darkpink: #0e0319;
+    --lightpink: #e2b8ff;
+    --white: #faebd7;
+    --explanation_bg_color: #210b35;
 }
 
 .explained {
@@ -34,7 +42,7 @@ body {
     border-style: hidden;
     padding: 25px;
     border-radius: 5px;
-    background-color: #210b35;
+    background-color: var(--explanation_bg_color);
     margin-left: 10px;
     margin-right: 10px;
     font-size: 20px;
@@ -44,9 +52,9 @@ body {
 
 .tag {
     padding: 1px 3px;
-    color: rgb(226, 184, 255);
+    color: var(--lightpink);
     border: none;
-    background-color: #210b35;
+    background-color: var(--explanation_bg_color);
     font-size: 20px;
     font-family: Josefin Slab;
     font-weight: 300;
@@ -54,10 +62,11 @@ body {
 }
 
 .tag:hover {
-    color: #210b35;
-    background-color: rgb(226, 184, 255);
+    color: var(--explanation_bg_color);
+    background-color: var(--lightpink);
     padding: 3px 6px;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 input[type=text] {
@@ -75,47 +84,6 @@ input[type=text] {
     width: 800px;
 }
 
-@media only screen and (max-width: 800px) {
-    .tag:hover {
-        background-color: inherit;
-        color: rgb(226, 184, 255);
-    }
-
-    .tag:active {
-        color: #210b35;
-        background-color: rgb(226, 184, 255);
-    }
-
-    .mainTitle {
-        font-size: 30px;
-    }
-
-    .subTitle {
-        font-size: 15px;
-    }
-
-    input[type=text] {
-        width: 80vw;
-        margin-right: 10px;
-    }
-
-    .footer {
-        margin-bottom: 5px;
-        bottom: 5px;
-    }
-
-    .explained {
-        width: max-content;
-    }
-
-    .context_para,
-    .main_context_para {
-        margin: 5px 10px;
-        width: 70vw;
-        align-self: center;
-    }
-}
-
 .run-button {
     background-color: rgb(226, 184, 255);
     color: rgb(33, 11, 53);
@@ -126,6 +94,7 @@ input[type=text] {
     font-size: 20px;
     margin: 8px 0px;
     padding: 0px 20px;
+    cursor: pointer;
 }
 
 .run-button:active {
@@ -174,7 +143,7 @@ input[type=text] {
 
 }
 
-.context_title{
+.context_title {
     font-size: 25px;
     text-align: center;
     text-transform: uppercase;
@@ -182,10 +151,122 @@ input[type=text] {
     margin-bottom: 10px;
 }
 
-.context_title_line{
+.context_title_line {
     width: 100%;
     height: 1px;
     background-color: antiquewhite;
     margin-bottom: 15px;
     opacity: 0.5;
+}
+
+.topbox {
+    background-color: rgb(33, 11, 53);
+    color: antiquewhite;
+    height: fit-content;
+    width: fit-content;
+    position: fixed;
+    top: 0px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+#help {
+    right: 0px;
+}
+
+#help:hover {
+    opacity: 1;
+}
+
+#about {
+    left: 0px;
+}
+
+#about:hover {
+    opacity: 1;
+}
+
+
+h4 {
+    padding: 10px;
+    margin: 0px;
+}
+
+.topboxfull {
+    color: antiquewhite;
+    background-color: #210b35;
+    width: 70vw;
+    border-radius: 5px;
+    position: fixed;
+    z-index: 10;
+    text-align: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    padding: 15px 30px 10px;
+}
+
+.blur_effect {
+    filter: blur(15px);
+    transition: filter 0.5s ease;
+    opacity: 0.4;
+}
+
+.close {
+    position: absolute;
+    top: 0.1vw;
+    right: 2vw;
+    font-size: 50px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+    .tag:hover {
+        background-color: inherit;
+        color: rgb(226, 184, 255);
+    }
+
+    .tag:active {
+        color: #210b35;
+        background-color: rgb(226, 184, 255);
+    }
+
+    .mainTitle {
+        font-size: 30px;
+    }
+
+    .subTitle {
+        font-size: 15px;
+    }
+
+    input[type=text] {
+        width: 80vw;
+        margin-right: 10px;
+    }
+
+    .footer {
+        margin-bottom: 5px;
+        bottom: 5px;
+    }
+
+    .explained {
+        width: max-content;
+    }
+
+    .context_para,
+    .main_context_para {
+        margin: 5px 10px;
+        width: 70vw;
+        align-self: center;
+    }
+
+    .topboxfull {
+        font-size: 15px;
+    }
+    .context_title{
+        font-size: 20px;
+    }
 }

@@ -83,3 +83,23 @@ function newTag(button) {
         });
 
 }    
+
+document.getElementById('about').addEventListener('click', function() {
+    document.getElementById("aboutbox").classList.remove("hidden");
+    document.getElementById("main_content").classList.add("blur_effect");
+});
+
+document.getElementById('close_about').addEventListener('click', function() {
+    document.getElementById("aboutbox").classList.add("hidden");
+    document.getElementById("main_content").classList.remove("blur_effect");
+});
+
+document.getElementById('help').addEventListener('click', function() {
+    document.getElementById("helpbox").classList.remove("hidden");
+    document.getElementById("main_content").classList.add("blur_effect");
+});
+
+document.getElementById('close_help').addEventListener('click', function() {
+    document.getElementById("helpbox").classList.add("hidden");
+    document.getElementById("main_content").classList.remove("blur_effect");
+});

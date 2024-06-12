@@ -17,17 +17,61 @@
 </head>
 
 <body>
-    <div class="titles">    
-        <h1 class="mainTitle">THE FULL EXPLANATION</h1>
-        <h2 class="subTitle">Never open another tab again.</h2>
+    <div id="aboutbox" class="topboxfull hidden">
+        <h2 class="context_title">ABOUT</h2><div class = "context_title_line"></div>
+        <span id="close_about" class="close">&times;</span>
+        <p>Welcome to <b>The Full Explanation!</b> <br><br>
+            This website was designed to fix the problem of when you wish to understand a complicated
+            term X, but the explanation itself has complicated terms A, B, C, D, E, F and
+            so on. <br><br>Here, as you will notice, certain topics are highlighted in the generated explanation.
+            Clicking those topics will generate an explanation of those topics (AB,C...) in the context of topic X.
+            <br><br>
+            What if the explanations of A,B,C have the same problem?<br>
+            No worries, the same features still apply!<br>
+        </p>
     </div>
-    <input type="text" id="user-input" style="height: 44px;" placeholder="ENTER TOPIC">
-    <button id="run-btn" class="run-button">GENERATE</button>
-    <div id="explanation" class="explained"><p class="context_para hidden"></p>
-        <p id="main_explanation" class="main_context_para"></p>
+    <div id="helpbox" class="topboxfull hidden">
+        <h2 class="context_title">HOW TO USE</h2><div class = "context_title_line"></div>
+        <span id="close_help" class="close">&times;</span>
+        <p> 1. Enter a topic from any domain, preferably mathematical / scientific / historic. 
+            If you sense your topic may have more than one meaning, add additional keywords to ensure 
+            you get the explanation you desire. Once you have clicked, give it ~10 seconds to generate.
+            <br><br>
+            2. Once your explanation is generated, you will observe that certain words are highlighted. 
+            If one of those words are a term you don't understand, you can click it to generate an 
+            explanation of that word in the context of the topic you seek to understand. 
+            <br><br>
+            3. If that explanation has been generated, you are good to go!<br>
+            If you don't understand certain highlighted words in the new explanation, everything from
+            step 2 still applies. 
+            <br><br>
+            Additional Note: All new explanations of highlighted terms appear above the paragraph they
+            were clicked from.
+        </p>
     </div>
-    <div class="footer"><h4>a weekend pet project <br> by @sharatj_2, enjoy!</h4></div>
-    <script src="/static/scripts.js"></script>
 
+    <div id="main_content">
+        <div class="titles">
+            <h1 class="mainTitle">THE FULL EXPLANATION</h1>
+            <h2 class="subTitle">Never open another tab again.</h2>
+        </div>
+        <input type="text" id="user-input" style="height: 44px;" placeholder="ENTER TOPIC">
+        <button id="run-btn" class="run-button">GENERATE</button>
+        <div id="explanation" class="explained">
+            <p class="context_para hidden"></p>
+            <p id="main_explanation" class="main_context_para"></p>
+        </div>
+        <div class="footer">
+            <h4>a weekend pet project <br> by @sharatj_2, enjoy!</h4>
+        </div>
+        <div class="topbox" id="help">
+            <h4>HOW TO USE</h4>
+        </div>
+        <div class="topbox" id="about">
+            <h4>ABOUT</h4>
+        </div>
+    </div>
+    <script src="/static/scripts.js"></script>
 </body>
+
 </html>

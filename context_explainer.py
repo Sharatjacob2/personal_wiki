@@ -46,6 +46,7 @@ def explainer(topic):
 def tagger(explanation):
   print("tagger working")
   system_message = '''You identify ALL the TECHNICAL/MATHEMATICAL/SCIENTIFIC terms in a paragraph. 
+  You are allowed to list NAMES in the paragraph.
   You print ONLY the TEN most technical terms in a numerical list. 
   The following are instructions to follow. 
   Print the terms EXACTLY as referred to in the paragraph. 

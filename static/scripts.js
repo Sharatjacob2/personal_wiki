@@ -3,6 +3,15 @@ document.getElementById("run-btn").style.height = heightOfInput;
 document.getElementById("extra-info").style.height = heightOfInput;
 
 document.getElementById('run-btn').addEventListener('click', function () {
+    const button = document.getElementById('run-btn');
+    const parentContainer = button.parentNode;
+    elementToMove = document.getElementById("generating");
+    parentContainer.insertBefore(elementToMove, button.nextSibling.nextSibling.nextSibling);
+    const targetRect = button.nextSibling.nextSibling.nextSibling.getBoundingClientRect();
+    const offsetTop = targetRect.top - 30; 
+    elementToMove.style.top = `${offsetTop}px`;
+    document.getElementById("generating").style.display = 'flex';
+
     const userInput = document.getElementById('user-input').value;
     fetch('/llm_output', {
         method: 'POST',
@@ -28,7 +37,9 @@ document.getElementById('run-btn').addEventListener('click', function () {
                 }
             });
             // Use innerHTML to render the formatted HTML
+            document.getElementById("generating").style.display = 'none';
             document.getElementById('main_explanation').innerHTML = `<h2 class="context_title">${userInput}</h2><div class = "context_title_line"></div>` + formattedResult;
+            document.getElementById('main_explanation').classList.remove("hidden");
             const elements = document.querySelectorAll('.context_para');
             // Convert NodeList to an array (optional but safer for compatibility)
             const elementsArray = Array.from(elements);
@@ -53,6 +64,16 @@ function newTag(button) {
     console.log(button);
     const mainTopic = button.dataset.maintopicvalue;
     const context_topic = button.textContent;
+
+    const elementToMove = document.getElementById('generating');
+    const parentContainer = button.parentNode.parentNode;
+    parentContainer.insertBefore(elementToMove, button.parentNode);
+    elementToMove.style.display = 'flex';
+    elementToMove.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+        window.scrollBy(0, -10);
+    }, 500);
+
     fetch('/llm_context_output', {
         method: 'POST',
         headers: {
@@ -77,17 +98,12 @@ function newTag(button) {
                 }
             });
             // Use innerHTML to render the formatted HTML
-
+            elementToMove.style.display = 'none';
             const newParagraph = document.createElement('p');
             newParagraph.innerHTML = `<h2 class="context_title">${context_topic} w.r.t ${mainTopic}</h2><div class = "context_title_line"></div>` + formattedResult;
             newParagraph.className = "context_para"
             container_explanation.insertBefore(newParagraph, button.parentElement);
-            newParagraph.scrollIntoView({behavior: "smooth"});
-
-            setTimeout(() => {
-                window.scrollBy(0, -10);
-            }, 500);
-
+            newParagraph.scrollIntoView({ behavior: "smooth" });
         });
 
 }

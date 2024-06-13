@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full Context</title>
@@ -18,7 +18,8 @@
 
 <body>
     <div id="aboutbox" class="topboxfull hidden">
-        <h2 class="context_title">ABOUT</h2><div class = "context_title_line"></div>
+        <h2 class="context_title">ABOUT</h2>
+        <div class="context_title_line"></div>
         <span id="close_about" class="close">&times;</span>
         <p>Welcome to <b>The Full Explanation!</b> <br><br>
             This website was designed to fix the problem of when you wish to understand a complicated
@@ -29,29 +30,46 @@
             What if the explanations of A,B,C have the same problem?<br>
             No worries, the same features still apply!<br>
         </p>
-        <div class="numbers"><div class="number" id="one-about"><h4>1</h4></div><div class="number" id="two-about"><h4>2</h4></div></div>
+        <div class="numbers">
+            <div class="number" id="one-about">
+                <h4>1</h4>
+            </div>
+            <div class="number" id="two-about">
+                <h4>2</h4>
+            </div>
+        </div>
     </div>
     <div id="helpbox" class="topboxfull hidden">
-        <h2 class="context_title">HOW TO USE</h2><div class = "context_title_line"></div>
+        <h2 class="context_title">HOW TO USE</h2>
+        <div class="context_title_line"></div>
         <span id="close_help" class="close">&times;</span>
-        <p> 1. Enter a topic from any domain, preferably mathematical / scientific / historic. 
-            If you sense your topic may have more than one meaning, add additional keywords to ensure 
+        <p> 1. Enter a topic from any domain, preferably mathematical / scientific / historic.
+            If you sense your topic may have more than one meaning, add additional keywords to ensure
             you get the explanation you desire. Once you have clicked, give it ~10 seconds to generate.
             <br><br>
-            2. Once your explanation is generated, you will observe that certain words are highlighted. 
-            If one of those words are a term you don't understand, you can click it to generate an 
-            explanation of that word in the context of the topic you seek to understand. 
+            2. Once your explanation is generated, you will observe that certain words are highlighted.
+            If one of those words are a term you don't understand, you can click it to generate an
+            explanation of that word in the context of the topic you seek to understand.
             <br><br>
-            3. If that explanation has been generated, you are good to go! If you don't understand certain highlighted words in the new explanation, everything from
-            step 2 still applies. 
+            3. If that explanation has been generated, you are good to go! If you don't understand certain highlighted
+            words in the new explanation, everything from
+            step 2 still applies.
             <br><br>
             Additional Note: All new explanations of highlighted terms appear above the paragraph they
             were clicked from.
         </p>
-        <div class="numbers"><div class="number" id="one-help"><h4>1</h4></div><div class="number" id="two-help"><h4>2</h4></div></div>
+        <div class="numbers">
+            <div class="number" id="one-help">
+                <h4>1</h4>
+            </div>
+            <div class="number" id="two-help">
+                <h4>2</h4>
+            </div>
+        </div>
     </div>
 
     <div id="main_content">
+        
         <div class="titles">
             <h1 class="mainTitle">THE FULL EXPLANATION</h1>
             <h2 class="subTitle">Never open another tab again.</h2>
@@ -59,12 +77,21 @@
         <input type="text" id="user-input" style="height: 44px;" placeholder="ENTER TOPIC, E.G. POLGAR">
         <button id="run-btn" class="run-button">GENERATE</button>
         <button class="extra-info" id="extra-info">HELP</button>
+
+        <div id="generating">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+        </div>
+
         <div id="explanation" class="explained">
             <p class="context_para hidden"></p>
-            <p id="main_explanation" class="main_context_para"></p>
+            <p id="main_explanation" class="main_context_para hidden">
+            </p>
         </div>
-        <div class="footer">    
-            <h4>made by <a href="https://www.instagram.com/sharatj_2/">@sharatj_2</a><br><a href="https://buymeacoffee.com/sharatj_2">buy me a coffee!</a></h4>
+        <div class="footer">
+            <h4>made by <a href="https://www.instagram.com/sharatj_2/">@sharatj_2</a><br><a
+                    href="https://buymeacoffee.com/sharatj_2">buy me a coffee!</a></h4>
         </div>
     </div>
     <div id="fullscreen"></div>

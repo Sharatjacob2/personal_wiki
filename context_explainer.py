@@ -37,7 +37,7 @@ def explainer(topic):
   You are skilled at taking a topic and answering with a large detailed explanation. 
   Avoid bullet points. [/INST] 
   Topic:'''
-  explanation = prompt_writer(system_message + topic, 256)
+  explanation = prompt_writer(system_message + topic, 1024)
   return explanation
 
 
@@ -66,7 +66,7 @@ def in_context_explainer(context_topic, topic):
   print("in_context_explainer working")
   system_message = f'''You are uniquely skilled at explaining one topic in the context of another topic. You answer with a good explanation of the topic and why it matters to the other topic. [/INST] 
   Explain {context_topic} in the context of {topic}. '''
-  context_explanation = prompt_writer(system_message, 256)
+  context_explanation = prompt_writer(system_message, 512)
   tags = tagger(context_explanation)
   tags = tag_handler(tags, context_topic)
   return context_explanation, tags

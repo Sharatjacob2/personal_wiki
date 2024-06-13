@@ -1,7 +1,6 @@
 from huggingface_hub import InferenceClient
 import re
 import os
-
 token = os.environ['HUGGINGFACEHUB_API_TOKEN']
 
 # setting the llm as mistral

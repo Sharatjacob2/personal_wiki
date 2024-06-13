@@ -114,3 +114,17 @@ document.getElementById('close_help').addEventListener('click', function () {
     document.getElementById("main_content").classList.remove("blur_effect");
     document.getElementById("two").classList.add("inactive");
 });
+
+
+const fullscreen_button = document.getElementById('fullscreen');
+var elem = document.documentElement;
+
+fullscreen_button.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => {
+            alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+});

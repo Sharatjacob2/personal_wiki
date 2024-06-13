@@ -81,6 +81,12 @@ function newTag(button) {
             newParagraph.innerHTML = `<h2 class="context_title">${context_topic} w.r.t ${mainTopic}</h2><div class = "context_title_line"></div>` + formattedResult;
             newParagraph.className = "context_para"
             container_explanation.insertBefore(newParagraph, button.parentElement);
+            newParagraph.scrollIntoView({behavior: "smooth"});
+
+            setTimeout(() => {
+                window.scrollBy(0, -10);
+            }, 500);
+
         });
 
 }

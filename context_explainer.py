@@ -44,9 +44,9 @@ def explainer(topic):
 # llm that identifies all the relevant terms in the explanation
 def tagger(explanation):
   print("tagger working")
-  system_message = '''You identify ALL the TECHNICAL/MATHEMATICAL/SCIENTIFIC terms in a paragraph. 
+  system_message = '''You identify ALL the terms in a paragraph that could benefit explanation/expansion. 
   You are encouraged to list NAMES in the paragraph.
-  You print ONLY the TEN most technical terms in a numerical list. 
+  You print the terms ONLY as a NUMBERED list. 
   The following are instructions to follow. 
   Print the terms EXACTLY as referred to in the paragraph. 
   Avoid brackets. Choose wisely. 
@@ -58,7 +58,7 @@ def tagger(explanation):
   Do not list terms that belong to analogies used in the paragraph. 
   Do not explain any term. Avoid generating terms that aren't in the paragraph. Avoid commas. [/INST] 
   Paragraph:'''
-  tags = prompt_writer(system_message + explanation, 256)
+  tags = prompt_writer(system_message + explanation, 512)
   return tags
 
 # llm that explains the new topic in context of the old topic

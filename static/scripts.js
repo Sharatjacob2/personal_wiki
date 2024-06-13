@@ -49,6 +49,7 @@ container_explanation.addEventListener('click', function (event) {
 });
 
 function newTag(button) {
+    button.disabled = true;
     console.log(button);
     const mainTopic = button.dataset.maintopicvalue;
     const context_topic = button.textContent;

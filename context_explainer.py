@@ -80,6 +80,7 @@ def main_explainer(topic):
 
 # bunch of wild hard-coded data processing style stuff because the llm will not listen to me
 def tag_handler(unhandled_tags, topic_check):
+  format_check = '<button class="tag" data-maintopicvalue="{topic_check}"></button>'
   tags = unhandled_tags
   tags = re.split('\d.',tags)
   tags.pop(0)
@@ -132,7 +133,10 @@ def tag_handler(unhandled_tags, topic_check):
       continue
     if tags[i].lower() in topic_check.lower():
       tags.pop(i)
-      continue 
+      continue
+    if tags[i] in format_check:
+      tags.pop(i)
+      continue
     print(tags[i])
     i = i+1
 

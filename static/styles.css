@@ -360,14 +360,14 @@ a:hover {
     border-radius: 5px;
 }
 
-.inline_wiki_assist {
+#inline_wiki_assist {
     left: 20vw;
     position: absolute;
     margin-top: 0px;
     opacity: 0.3;
 }
 
-.inline_wiki_assist:hover {
+#inline_wiki_assist:hover {
     opacity: 0.8;
 }
 

@@ -21,7 +21,7 @@ document.getElementById('wiki-assist').addEventListener('click', function() {
 });
 
 document.getElementById('run-btn').addEventListener('click', function () {
-    const button = document.getElementById('run-btn');
+    const button = document.getElementById('inline_wiki_assist');
     const parentContainer = button.parentNode;
     elementToMove = document.getElementById("generating");
     parentContainer.insertBefore(elementToMove, button.nextSibling.nextSibling.nextSibling);

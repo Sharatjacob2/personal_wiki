@@ -422,6 +422,7 @@ h3 {
     position: relative;
     bottom: 5px;
     padding: 5px;
+    cursor: pointer;
 }
 
 p.infoI{

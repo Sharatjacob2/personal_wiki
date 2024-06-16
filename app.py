@@ -13,8 +13,8 @@ def llm_output():
     prompt = data.get("input")
     wiki_toggle = data.get("wikiToggle")
     if (wiki_toggle == False):
-        output_explanation, output_tags, output_context  =  wiki_assist(prompt)
-        return jsonify({"explanation": output_explanation, "tags": output_tags, "context": output_context})
+        output_explanation, output_tags, output_context, output_wiki_links  =  wiki_assist(prompt)
+        return jsonify({"explanation": output_explanation, "tags": output_tags, "context": output_context, "links": output_wiki_links})
     else:    
         output_explanation, output_tags  =  main_explainer(prompt)
         return jsonify({"explanation": output_explanation, "tags": output_tags})

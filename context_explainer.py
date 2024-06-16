@@ -154,17 +154,19 @@ def tag_handler(unhandled_tags, topic_check):
 
 def wiki_assist(topic):
   wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
+  context = ' '
+  tags = []
+  if topic == '':
+    return 'Wikipedia page not found', tags, context    
   topic = wikipedia.search(topic)
   page_py = wiki_wiki.page(topic[0])
   print(topic)
-
-  tags = []
 
   if (page_py.exists()):
     context = page_py.summary
     print(context)
   else:
-    return 'Wikipedia page not found', tags
+    return 'Wikipedia page not found', tags, context
 
   sys_msg = '''<s> [INST] You take in the Wikipedia summary page of a specific topic and you give a large detailed explanation, but in the style of a reasonably educated layman.[/INST] 
   Topic:'''
@@ -184,4 +186,7 @@ def wiki_assist(topic):
   temp = temp.replace(r"\'","")
   print(temp)
 
-  return temp, tags, context
+  if len(topic) < 5:
+    topic = topic[1:3]
+
+  return temp, tags, context, topic

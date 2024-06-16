@@ -253,6 +253,9 @@ h4 {
     .context_title {
         font-size: 20px;
     }
+    #inline_wiki_assist{
+        display: none;
+    }
 }
 
 .inactive {
@@ -393,7 +396,7 @@ h3 {
     /* Ensure the inner div doesn't overflow */
 }
 
-#toggle {
+#wikiToggle {
     border-radius: 3px;
     background-color: red;
     height: 80%;
@@ -403,4 +406,24 @@ h3 {
     left: 0.15vw;
     transition: left 0.5s;
     /* Add transition for smooth animation */
+}
+
+.info{
+    border-radius: 20px;
+    display:inline-block;
+    background-color: inherit;
+    border-width: 2px;
+    border-color: var(--white);
+    border-style: solid;
+    color: var(--white);
+    width: 1.15vw;
+    height: fit-content;
+    font-weight: 500;
+    position: relative;
+    bottom: 5px;
+    padding: 5px;
+}
+
+p.infoI{
+    margin: 0;
 }

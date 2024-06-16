@@ -5,27 +5,34 @@ document.getElementById("extra-info").style.height = heightOfInput;
 let wikiAssist = true;
 
 document.getElementById('wiki-assist').addEventListener('click', function() {
-    maxPos = document.getElementById('wiki-assist').clientWidth - document.getElementById('toggle').clientWidth;
+    maxPos = document.getElementById('wiki-assist').clientWidth - document.getElementById('wikiToggle').clientWidth;
     maxPos = maxPos - 8;
-    if (wikiAssist){
-        document.getElementById('toggle').style.left = `${maxPos}px`;
-        document.getElementById('toggle').style.backgroundColor = `green`;
-    }
-    else{
-        document.getElementById('toggle').style.left = `0.25vw`;
-        document.getElementById('toggle').style.backgroundColor = `red`;
-
-    }
-
+    wikiToggleButton = document.getElementById('wikiToggle');
+    toggleChange(wikiToggleButton, wikiAssist);
     wikiAssist = !wikiAssist;
 });
+
+function toggleChange(button, flag){
+    if (flag){
+        button.style.left = `${maxPos}px`;
+        button.style.backgroundColor = `green`;
+    }
+    else{
+        button.style.left = `0.25vw`;
+        button.style.backgroundColor = `red`;
+
+    }
+
+
+
+}
 
 document.getElementById('run-btn').addEventListener('click', function () {
     const button = document.getElementById('inline_wiki_assist');
     const parentContainer = button.parentNode;
     elementToMove = document.getElementById("generating");
-    parentContainer.insertBefore(elementToMove, button.nextSibling.nextSibling.nextSibling);
-    const targetRect = button.nextSibling.nextSibling.nextSibling.getBoundingClientRect();
+    parentContainer.insertBefore(elementToMove, button.nextSibling);
+    const targetRect = button.nextSibling.getBoundingClientRect();
     const offsetTop = targetRect.top - 30; 
     elementToMove.style.top = `${offsetTop}px`;
     document.getElementById("generating").style.display = 'flex';

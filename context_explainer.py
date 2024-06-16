@@ -142,6 +142,9 @@ def tag_handler(unhandled_tags, topic_check):
     if tags[i] in format_check:
       tags.pop(i)
       continue
+    if 'Data' in tags[i]:
+      tags.pop(i)
+      continue
     print(tags[i])
     i = i+1
 
@@ -163,7 +166,7 @@ def wiki_assist(topic):
   else:
     return 'Wikipedia page not found', tags
 
-  sys_msg = '''<s> [INST] You take in the Wikipedia summary page of a specific topic and you explain it in simple terms.[/INST] 
+  sys_msg = '''<s> [INST] You take in the Wikipedia summary page of a specific topic and you give a large detailed explanation, but in the style of a reasonably educated layman.[/INST] 
   Topic:'''
 
   user_topic = topic[0]
@@ -171,7 +174,7 @@ def wiki_assist(topic):
   sys_msg = sys_msg + user_topic + wikipedia_context
 
   prompt = f"{sys_msg} [/INST]"
-  explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=512)
+  explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
   tags = tagger(explanation)
   tags = tag_handler(tags, topic[0])
 
@@ -181,4 +184,4 @@ def wiki_assist(topic):
   temp = temp.replace(r"\'","")
   print(temp)
 
-  return temp, tags
+  return temp, tags, context

@@ -7,7 +7,7 @@ body {
     overflow: visible;
 }
 
-:root{
+:root {
     --darkpink: #0e0319;
     --lightpink: #e2b8ff;
     --white: #faebd7;
@@ -97,7 +97,7 @@ input[type=text] {
     cursor: pointer;
 }
 
-.extra-info{
+.extra-info {
     background-color: var(--white);
     color: var(--explanation_bg_color);
     border: none;
@@ -111,7 +111,7 @@ input[type=text] {
     height: 44px;
 }
 
-.extra-info:hover{
+.extra-info:hover {
     background-color: var(--explanation_bg_color);
     color: var(--white);
 }
@@ -129,7 +129,7 @@ input[type=text] {
     position: relative;
     bottom: 0px;
     left: 50%;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
     opacity: 0.4;
     width: fit-content;
 }
@@ -249,16 +249,17 @@ h4 {
     .topboxfull {
         font-size: 15px;
     }
-    .context_title{
+
+    .context_title {
         font-size: 20px;
     }
 }
 
-.inactive{
+.inactive {
     opacity: 0.5;
 }
 
-.number{
+.number {
     background-color: antiquewhite;
     border-radius: 10px;
     padding: 2px;
@@ -272,24 +273,24 @@ h4 {
     cursor: pointer;
 }
 
-.numbers{
+.numbers {
     /* display: inline; */
     width: fit-content;
     position: relative;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
 
 }
 
-#main_content{
+#main_content {
     height: 100vh;
 }
 
-#fullscreen{
+#fullscreen {
     border-radius: 4px;
     border-color: var(--white);
-    border-style:dashed;
+    border-style: dashed;
     border-width: 3px;
     background-color: var(--darkpink);
     width: 35px;
@@ -302,13 +303,13 @@ h4 {
     opacity: 0.3;
 }
 
-a{
-  opacity: 0.6; 
-  text-decoration: none; 
-  color: var(--white);
+a {
+    opacity: 0.6;
+    text-decoration: none;
+    color: var(--white);
 }
 
-a:hover{
+a:hover {
     opacity: 1;
 }
 
@@ -316,30 +317,38 @@ a:hover{
     width: 20px;
     height: 20px;
     margin: 10px;
-    background-color: var(--white); /* Blue color */
+    background-color: var(--white);
+    /* Blue color */
     animation: fade 1.5s infinite;
     border-radius: 5px;
 
 }
+
 .square:nth-child(1) {
     animation-delay: 0s;
 }
+
 .square:nth-child(2) {
     animation-delay: 0.5s;
 }
+
 .square:nth-child(3) {
     animation-delay: 1s;
 }
+
 @keyframes fade {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.3;
     }
 }
 
-#generating{
+#generating {
     width: fit-content;
     position: relative;
     left: 50%;
@@ -349,4 +358,49 @@ a:hover{
     background-color: var(--explanation_bg_color);
     margin-top: 6vw;
     border-radius: 5px;
+}
+
+.inline_wiki_assist {
+    left: 20vw;
+    position: absolute;
+    margin-top: 0px;
+    opacity: 0.3;
+}
+
+.inline_wiki_assist:hover {
+    opacity: 0.8;
+}
+
+h3 {
+    text-align: left;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#wiki-assist {
+    border-radius: 3px;
+    background-color: var(--white);
+    width: 4vw;
+    display: inline-block;
+    padding: 2px;
+    top: 2px;
+    position: relative;
+    cursor: pointer;
+    height: 3vh;
+    overflow: hidden;
+    align-items: center;
+    /* Ensure the inner div doesn't overflow */
+}
+
+#toggle {
+    border-radius: 3px;
+    background-color: red;
+    height: 80%;
+    width: 2vw;
+    margin: 1px;
+    position: relative;
+    left: 0.15vw;
+    transition: left 0.5s;
+    /* Add transition for smooth animation */
 }

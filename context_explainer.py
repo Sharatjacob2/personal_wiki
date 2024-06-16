@@ -1,6 +1,11 @@
 from huggingface_hub import InferenceClient
 import re
 import os
+import wikipediaapi
+import wikipedia
+from apikey import apikey
+
+os.environ['HUGGINGFACEHUB_API_TOKEN'] = apikey
 token = os.environ['HUGGINGFACEHUB_API_TOKEN']
 
 # setting the llm as mistral
@@ -144,3 +149,36 @@ def tag_handler(unhandled_tags, topic_check):
   return tags
 
 
+def wiki_assist(topic):
+  wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
+  topic = wikipedia.search(topic)
+  page_py = wiki_wiki.page(topic[0])
+  print(topic)
+
+  tags = []
+
+  if (page_py.exists()):
+    context = page_py.summary
+    print(context)
+  else:
+    return 'Wikipedia page not found', tags
+
+  sys_msg = '''<s> [INST] You take in the Wikipedia summary page of a specific topic and you explain it in simple terms.[/INST] 
+  Topic:'''
+
+  user_topic = topic[0]
+  wikipedia_context = "Wikipedia Summary of Topic: " + context
+  sys_msg = sys_msg + user_topic + wikipedia_context
+
+  prompt = f"{sys_msg} [/INST]"
+  explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=512)
+  tags = tagger(explanation)
+  tags = tag_handler(tags, topic[0])
+
+  temp = r"%r" % explanation
+  temp = temp[1:-1]
+  temp = temp.replace(r"\n","<br>")
+  temp = temp.replace(r"\'","")
+  print(temp)
+
+  return temp, tags

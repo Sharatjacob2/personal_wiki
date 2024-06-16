@@ -2,6 +2,24 @@ const heightOfInput = document.getElementById("user-input").style.height;
 document.getElementById("run-btn").style.height = heightOfInput;
 document.getElementById("extra-info").style.height = heightOfInput;
 
+let wikiAssist = true;
+
+document.getElementById('wiki-assist').addEventListener('click', function() {
+    maxPos = document.getElementById('wiki-assist').clientWidth - document.getElementById('toggle').clientWidth;
+    maxPos = maxPos - 8;
+    if (wikiAssist){
+        document.getElementById('toggle').style.left = `${maxPos}px`;
+        document.getElementById('toggle').style.backgroundColor = `green`;
+    }
+    else{
+        document.getElementById('toggle').style.left = `0.25vw`;
+        document.getElementById('toggle').style.backgroundColor = `red`;
+
+    }
+
+    wikiAssist = !wikiAssist;
+});
+
 document.getElementById('run-btn').addEventListener('click', function () {
     const button = document.getElementById('run-btn');
     const parentContainer = button.parentNode;
@@ -18,7 +36,7 @@ document.getElementById('run-btn').addEventListener('click', function () {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ input: userInput })
+        body: JSON.stringify({ input: userInput, wikiToggle: wikiAssist })
     })
         .then(response => response.json())
         .then(data => {

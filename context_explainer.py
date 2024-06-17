@@ -3,6 +3,7 @@ import re
 import os
 import wikipediaapi
 import wikipedia
+from wiki import wiki_links_access
 
 token = os.environ['HUGGINGFACEHUB_API_TOKEN']
 
@@ -181,8 +182,7 @@ def wiki_assist(temp_topic):
 
   prompt = f"{sys_msg} [/INST]"
   explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
-  tags = tagger(explanation)
-  tags = tag_handler(tags, temp_topic)
+  tags = wiki_links_access(topic[0])
 
   temp = r"%r" % explanation
   temp = temp[1:-1]

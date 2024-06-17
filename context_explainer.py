@@ -3,12 +3,14 @@ import re
 import os
 import wikipediaapi
 import wikipedia
+from apikey import apikey 
 
-token = os.environ['HUGGINGFACEHUB_API_TOKEN']
+
+# token = os.environ['HUGGINGFACEHUB_API_TOKEN']
 
 # setting the llm as mistral
 repo_id = "mistralai/Mistral-7B-Instruct-v0.2"
-llm = InferenceClient(model=repo_id,token=token)
+llm = InferenceClient(model=repo_id,token=apikey)
 
 # function that is called by the three llm agents to create the prompt
 def prompt_writer(sys_msg, token_count):
@@ -83,7 +85,8 @@ def main_explainer(topic):
 
 # bunch of wild hard-coded data processing style stuff because the llm will not listen to me
 def tag_handler(unhandled_tags, topic_check):
-  format_check = '<button class="tag" data-maintopicvalue="{topic_check}"></button>'
+  format_check = f'<button class="tag" data-maintopicvalue="{topic_check}"></button>'
+  print(format_check)
   tags = unhandled_tags
   tags = re.split('\d.',tags)
   tags.pop(0)

@@ -3,9 +3,7 @@ import re
 import os
 import wikipediaapi
 import wikipedia
-from apikey import apikey
 
-os.environ['HUGGINGFACEHUB_API_TOKEN'] = apikey
 token = os.environ['HUGGINGFACEHUB_API_TOKEN']
 
 # setting the llm as mistral

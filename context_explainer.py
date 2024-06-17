@@ -182,7 +182,8 @@ def wiki_assist(temp_topic):
 
   prompt = f"{sys_msg} [/INST]"
   explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
-  tags = wiki_links_access(topic[0])
+  tags = tagger(explanation)
+  tags = tag_handler(tags, temp_topic)
 
   temp = r"%r" % explanation
   temp = temp[1:-1]

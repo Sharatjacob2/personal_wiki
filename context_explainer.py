@@ -156,13 +156,13 @@ def tag_handler(unhandled_tags, topic_check):
   return tags
 
 
-def wiki_assist(topic):
+def wiki_assist(temp_topic):
   wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
   context = ' '
   tags = []
-  if topic == '':
+  if temp_topic == '':
     return 'Wikipedia page not found', tags, context    
-  topic = wikipedia.search(topic)
+  topic = wikipedia.search(temp_topic)
   page_py = wiki_wiki.page(topic[0])
   print(topic)
 
@@ -182,7 +182,7 @@ def wiki_assist(topic):
   prompt = f"{sys_msg} [/INST]"
   explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
   tags = tagger(explanation)
-  tags = tag_handler(tags, topic[0])
+  tags = tag_handler(tags, temp_topic)
 
   temp = r"%r" % explanation
   temp = temp[1:-1]

@@ -3,14 +3,12 @@ import re
 import os
 import wikipediaapi
 import wikipedia
-from apikey import apikey 
 
-
-# token = os.environ['HUGGINGFACEHUB_API_TOKEN']
+token = os.environ['HUGGINGFACEHUB_API_TOKEN']
 
 # setting the llm as mistral
 repo_id = "mistralai/Mistral-7B-Instruct-v0.2"
-llm = InferenceClient(model=repo_id,token=apikey)
+llm = InferenceClient(model=repo_id,token=token)
 
 # function that is called by the three llm agents to create the prompt
 def prompt_writer(sys_msg, token_count):

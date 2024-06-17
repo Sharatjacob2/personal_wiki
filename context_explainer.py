@@ -3,7 +3,6 @@ import re
 import os
 import wikipediaapi
 import wikipedia
-from wiki import wiki_links_access
 
 token = os.environ['HUGGINGFACEHUB_API_TOKEN']
 
@@ -196,3 +195,37 @@ def wiki_assist(temp_topic):
     topic = topic[1:3]
 
   return temp, tags, context, topic
+
+def wiki_context_assist(context_topic, topic):
+    
+    wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
+
+    context_topics = wikipedia.search(context_topic)
+    context_topic = context_topics[0]
+    context_page = wiki_wiki.page(context_topic)
+
+    topics = wikipedia.search(topic)
+    topic = topics[0]
+    main_page = wiki_wiki.page(topic)
+
+    summary_of_context = context_page.summary
+    summary_of_main = main_page.summary
+
+    system_message = f'''You are uniquely skilled at explaining one topic in the context of another topic. 
+    You answer with a good explanation of the topic and why it matters to the other topic. 
+    You are given the wikipedia summaries of both the context topic and the main topic as well.[/INST] 
+    Wikipedia summary of main topic: {summary_of_main}
+    Wikipedia summary of context topic: {summary_of_context}
+    Explain {context_topic} in the context of {topic}. Use multiple paragraphs.''' 
+    prompt = f"{system_message} [/INST]"
+    context_explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
+    tags = tagger(context_explanation)
+    tags = tag_handler(tags, context_topic)
+
+    temp = r"%r" % context_explanation
+    temp = temp[1:-1]
+    temp = temp.replace(r"\n","<br>")
+    temp = temp.replace(r"\'","")
+    print(temp)
+
+    return temp, tags, context_topics

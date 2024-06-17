@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
-from context_explainer import main_explainer, in_context_explainer, wiki_assist
+from context_explainer import main_explainer, in_context_explainer, wiki_assist, wiki_context_assist
 
 app = Flask(__name__)
 
@@ -24,8 +24,13 @@ def llm_context_output():
     data = request.json
     topic = data.get("topic")
     context = data.get("context")
-    output_explanation, output_tags  =  in_context_explainer(context, topic)
-    return jsonify({"explanation": output_explanation, "tags": output_tags})
+    wiki_toggle = data.get("wikiToggle")
+    if (wiki_toggle == False):
+        output_explanation, output_tags, output_wiki_links  =  wiki_context_assist(context, topic)
+        return jsonify({"explanation": output_explanation, "tags": output_tags, "links": output_wiki_links})
+    else:    
+        output_explanation, output_tags  =  in_context_explainer(context, topic)
+        return jsonify({"explanation": output_explanation, "tags": output_tags})
 
 # if __name__ == '__main__':
 #     app.run(port=5000, debug=True)

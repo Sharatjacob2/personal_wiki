@@ -122,12 +122,16 @@ function newTag(button) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ topic: mainTopic, context: context_topic })
+        body: JSON.stringify({ topic: mainTopic, context: context_topic, wikiToggle: wikiAssist})
     })
         .then(response => response.json())
         .then(data => {
             let boldWords = data.tags; // Add the words you want to bolden here
             let formattedResult = data.explanation;
+            if (!wikiAssist) {
+                wikiLinks = data.links;
+            }
+
             const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             boldWords.forEach(word => {
                 // Replace each occurrence of the word with the same word wrapped in <b> tags
@@ -140,10 +144,18 @@ function newTag(button) {
                     console.log("didnt work")
                 }
             });
+
             // Use innerHTML to render the formatted HTML
             elementToMove.style.display = 'none';
             const newParagraph = document.createElement('p');
-            newParagraph.innerHTML = `<h2 class="context_title">${context_topic} w.r.t ${mainTopic}</h2><div class = "context_title_line"></div>` + formattedResult;
+            newParagraph.innerHTML = `<h2 class="context_title">${context_topic} w.r.t ${mainTopic}</h2><div class = "context_title_line"></div>` + formattedResult + `<br><br><div class = "context_title_line"></div><br> Not the correct wiki link? Update page with: `;
+
+            if (!wikiAssist) {
+                wikiLinks.forEach(link => {
+                    newParagraph.innerHTML = newParagraph.innerHTML + `<button class="tag linkTag">` + link + `</button>, `;
+                })
+            }
+
             newParagraph.className = "context_para"
             container_explanation.insertBefore(newParagraph, button.parentElement);
             newParagraph.scrollIntoView({ behavior: "smooth" });

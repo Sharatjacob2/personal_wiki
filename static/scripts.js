@@ -92,8 +92,6 @@ function generate_main_explanation(userInput) {
         });
 }
 
-
-
 let container_explanation = document.getElementById('explanation');
 container_explanation.addEventListener('click', function (event) {
     if (event.target.classList.contains('linkTag')) {
@@ -142,7 +140,6 @@ function newTag(button) {
                     console.log("didnt work")
                 }
             });
-
             // Use innerHTML to render the formatted HTML
             elementToMove.style.display = 'none';
             const newParagraph = document.createElement('p');
@@ -151,9 +148,7 @@ function newTag(button) {
             container_explanation.insertBefore(newParagraph, button.parentElement);
             newParagraph.scrollIntoView({ behavior: "smooth" });
         });
-
 }
-
 
 
 document.getElementById('wikiInfo').addEventListener('click', function () {
@@ -165,9 +160,6 @@ document.getElementById('close_wiki').addEventListener('click', function () {
     document.getElementById("wikiInfoBox").classList.add("hidden");
     document.getElementById("main_content").classList.remove("blur_effect");
 });
-
-
-
 
 document.getElementById('extra-info').addEventListener('click', function () {
     document.getElementById("aboutbox").classList.remove("hidden");

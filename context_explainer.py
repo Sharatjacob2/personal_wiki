@@ -173,7 +173,8 @@ def wiki_assist(temp_topic):
   else:
     return 'Wikipedia page not found', tags, context
 
-  sys_msg = '''<s> [INST] You take in the Wikipedia summary page of a specific topic and you give a large detailed explanation, but in the style of a reasonably educated layman.[/INST] 
+  sys_msg = '''<s> [INST] You take in the Wikipedia summary page of a specific topic and you give a large detailed explanation, but in the style of a reasonably educated layman. 
+  Speak formally. Add details from the summary provided. Avoid addressing the individual you are explaining. [/INST] 
   Topic:'''
 
   user_topic = topic[0]

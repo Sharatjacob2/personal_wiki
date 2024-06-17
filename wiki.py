@@ -3,11 +3,10 @@ import wikipedia
 
 def wiki_links_access(topic):
     wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
-    topic = wikipedia.search(topic)
     print(topic)
-    page_py = wiki_wiki.page(topic[0])
+    page_py = wiki_wiki.page(topic)
     title = page_py.sections[0].title
-    link_list = wikipedia.page(topic[0]).html()
+    link_list = wikipedia.page(topic).html()
     print(title)
     link_list = link_list[link_list.find('<p>'):]
     link_list = link_list[0:link_list.find(title)]

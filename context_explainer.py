@@ -228,4 +228,4 @@ def wiki_context_assist(context_topic, topic):
     temp = temp.replace(r"\'","")
     print(temp)
 
-    return temp, tags, context_topics
+    return temp, tags

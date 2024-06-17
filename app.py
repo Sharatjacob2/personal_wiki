@@ -26,8 +26,8 @@ def llm_context_output():
     context = data.get("context")
     wiki_toggle = data.get("wikiToggle")
     if (wiki_toggle == False):
-        output_explanation, output_tags, output_wiki_links  =  wiki_context_assist(context, topic)
-        return jsonify({"explanation": output_explanation, "tags": output_tags, "links": output_wiki_links})
+        output_explanation, output_tags  =  wiki_context_assist(context, topic)
+        return jsonify({"explanation": output_explanation, "tags": output_tags})
     else:    
         output_explanation, output_tags  =  in_context_explainer(context, topic)
         return jsonify({"explanation": output_explanation, "tags": output_tags})

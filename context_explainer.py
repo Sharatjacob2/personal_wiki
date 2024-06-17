@@ -146,6 +146,11 @@ def tag_handler(unhandled_tags, topic_check):
     print(tags[i])
     i = i+1
 
+  while i < len(tags):
+      if tags[i] in format_check:
+        tags.pop(i)
+        continue
+
   print(tags)
   return tags
 

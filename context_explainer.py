@@ -204,15 +204,15 @@ def wiki_assist(temp_topic):
   temp = temp.replace(r"\'","")
   print(temp)
 
-  if len(topic) < 5:
-    topic = topic[1:3]
+  if len(topic) < 10:
+    topic = topic[1:9]
 
   return temp, tags, context, topic
 
 def wiki_context_assist(context_topic, topic):
     
     wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
-
+    true_topic = context_topic
     context_topics = wikipedia.search(context_topic)
     context_topic = context_topics[0]
     context_page = wiki_wiki.page(context_topic)
@@ -233,7 +233,7 @@ def wiki_context_assist(context_topic, topic):
     prompt = f"{system_message} [/INST]"
     context_explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
     tags = tagger(context_explanation)
-    tags = tag_handler(tags, context_topic)
+    tags = tag_handler(tags, true_topic)
 
     temp = r"%r" % context_explanation
     temp = temp[1:-1]

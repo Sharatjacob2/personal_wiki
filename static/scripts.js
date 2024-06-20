@@ -73,11 +73,14 @@ function generate_main_explanation(userInput) {
                 }
             });
 
-            document.getElementById('main_explanation').innerHTML = `<h2 class="context_title">${userInput}</h2><div class = "context_title_line"></div>` + formattedResult + `<br><br><div class = "context_title_line"></div><br> Not the correct wiki link? Update page with: `;
             if (!wikiAssist) {
+                document.getElementById('main_explanation').innerHTML = `<h2 class="context_title">${userInput}</h2><div class = "context_title_line"></div>` + formattedResult + `<br><br><div class = "context_title_line"></div><br> Not the correct wiki link? Update page with: `;
                 wikiLinks.forEach(link => {
                     document.getElementById('main_explanation').innerHTML = document.getElementById('main_explanation').innerHTML + `<button class="tag linkTag">` + link + `</button>, `;
                 })
+            }
+            else {
+                document.getElementById('main_explanation').innerHTML = `<h2 class="context_title">${userInput}</h2><div class = "context_title_line"></div>` + formattedResult;
             }
 
             // Use innerHTML to render the formatted HTML
@@ -144,7 +147,7 @@ function newTag(button) {
             // Use innerHTML to render the formatted HTML
             elementToMove.style.display = 'none';
             const newParagraph = document.createElement('p');
-            newParagraph.innerHTML = `<h2 class="context_title">${context_topic} w.r.t ${mainTopic}</h2><div class = "context_title_line"></div>` + formattedResult;
+            newParagraph.innerHTML = `<h2 class="context_title">${context_topic}<br> <span style="font-weight:300; font-size:20px;">(w.r.t ${mainTopic})</span></h2><div class = "context_title_line"></div>` + formattedResult;
             newParagraph.className = "context_para"
             container_explanation.insertBefore(newParagraph, button.parentElement);
             newParagraph.scrollIntoView({ behavior: "smooth" });

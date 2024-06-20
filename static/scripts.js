@@ -73,7 +73,7 @@ function generate_main_explanation(userInput) {
                 }
             });
 
-            if (!wikiAssist) {
+            if (!wikiAssist && boldWords.length != 0) {
                 document.getElementById('main_explanation').innerHTML = `<h2 class="context_title">${userInput}</h2><div class = "context_title_line"></div>` + formattedResult + `<br><br><div class = "context_title_line"></div><br> Not the correct wiki link? Update page with: `;
                 wikiLinks.forEach(link => {
                     document.getElementById('main_explanation').innerHTML = document.getElementById('main_explanation').innerHTML + `<button class="tag linkTag">` + link + `</button>, `;

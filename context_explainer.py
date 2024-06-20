@@ -77,6 +77,10 @@ def in_context_explainer(context_topic, topic):
 
 # function that combines the explainer and tagger llms to generate the modified explanation
 def main_explainer(topic):
+  tags = []
+  if topic == '':
+    return 'Please enter topic.', tags
+
   explanation = explainer(topic)
   tags = tagger(explanation)
   tags = tag_handler(tags, topic)
@@ -158,20 +162,17 @@ def tag_handler(unhandled_tags, topic_check):
 
 
 def wiki_assist(temp_topic):
-  wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
   context = ' '
   tags = []
+  topic = []
   if temp_topic == '':
-    return 'Wikipedia page not found', tags, context    
-  topic = wikipedia.search(temp_topic)
+    return 'Please enter topic.', tags, context, topic 
+  wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
+  topic = wikipedia.search(temp_topic)     
+  if len(topic) < 1:
+    return "Unrecognizable term has been entered, please rephrase or search different topic.", tags, context, topic
   page_py = wiki_wiki.page(topic[0])
   print(topic)
-
-  if (page_py.exists()):
-    context = page_py.summary
-    print(context)
-  else:
-    return 'Wikipedia page not found', tags, context
 
   sys_msg = '''<s> [INST] You take in the Wikipedia summary page of a specific topic and you give a large detailed explanation, but in the style of a reasonably educated layman. 
   Speak formally. Add details from the summary provided. Avoid addressing the individual you are explaining. [/INST] 
@@ -214,6 +215,9 @@ def wiki_context_assist(context_topic, topic):
     wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
     true_topic = context_topic
     context_topics = wikipedia.search(context_topic)
+    tags = []
+    if len(context_topics) < 1:
+      return "Unrecognizable term has been entered, please rephrase or search different topic.", tags
     context_topic = context_topics[0]
     context_page = wiki_wiki.page(context_topic)
 

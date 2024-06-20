@@ -11,9 +11,10 @@ def get_wikipedia_intro_links(page_title):
         "section": 0,
         "format": "json"
     }
-    
+    headers = {'User-Agent': 'FullContext (https://personal-wiki-srgi.onrender.com/; sharatjwrites@gmail.com)'}
+
     # Make the request to the Wikipedia API
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, headers=headers)
     data = response.json()
     
     # Extract the HTML content of the introduction

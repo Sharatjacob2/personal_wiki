@@ -255,12 +255,16 @@ function newTag(button) {
             // Use innerHTML to render the formatted HTML
             elementToMove.style.display = 'none';
             const newParagraph = document.createElement('div');
-            newParagraph.innerHTML = `<h2 class="context_title">${context_topic}<br> <span style="font-weight:300; font-size:20px;">(w.r.t ${mainTopic})</span></h2><div class = "context_title_line"></div><span class="close closeContext">&times;</span><p>` + formattedResult + `</p>`;
+            if (contextToggle){
+                newParagraph.innerHTML = `<h2 class="context_title">${context_topic}<br> <span style="font-weight:300; font-size:20px;">(w.r.t ${mainTopic})</span></h2><div class = "context_title_line"></div><span class="close closeContext">&times;</span><p>` + formattedResult + `</p>`;
+            }
+            else{
+                newParagraph.innerHTML = `<h2 class="context_title">${context_topic}</h2><div class = "context_title_line"></div><span class="close closeContext">&times;</span><p>` + formattedResult + `</p>`;
+            }
             newParagraph.className = "context_para";
             container_explanation.insertBefore(newParagraph, button.parentElement.parentElement);
             newParagraph.scrollIntoView({ behavior: "smooth" });
         });
-
     button.disabled = false;
 }
 

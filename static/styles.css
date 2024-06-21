@@ -214,53 +214,6 @@ h4 {
     display: inline;
 }
 
-@media only screen and (max-width: 800px) {
-    .tag:hover {
-        background-color: inherit;
-        color: rgb(226, 184, 255);
-    }
-
-    .tag:active {
-        color: #210b35;
-        background-color: rgb(226, 184, 255);
-    }
-
-    .mainTitle {
-        font-size: 30px;
-    }
-
-    .subTitle {
-        font-size: 15px;
-    }
-
-    input[type=text] {
-        width: 80vw;
-        margin-right: 10px;
-    }
-
-    .explained {
-        width: max-content;
-    }
-
-    .context_para,
-    .main_context_para {
-        margin: 5px 10px;
-        width: 70vw;
-        align-self: center;
-    }
-
-    .topboxfull {
-        font-size: 15px;
-    }
-
-    .context_title {
-        font-size: 20px;
-    }
-    #inline_wiki_assist{
-        display: none;
-    }
-}
-
 .inactive {
     opacity: 0.5;
 }
@@ -309,14 +262,13 @@ h4 {
     opacity: 0.3;
 }
 
-#contextToggle {
+#contextToggle, #wikiPhoneToggle{
     border-radius: 4px;
     background-color: var(--white);
     color: var(--explanation_bg_color);
     width: 39px;
     height: 39px;
     position: fixed;
-    bottom: 49px;
     right: 0;
     margin: 10px;
     cursor: pointer;
@@ -324,13 +276,25 @@ h4 {
     font-weight: 900;
 }
 
-#contextInfo{
+#contextToggle, #contextUpdate{
+    bottom: 49px;
+}
+
+#wikiPhoneToggle, #wikiPhoneUpdate{
+    bottom: 98px;
+}
+
+#wikiPhoneToggle{
+    display: none;
+}
+
+
+#contextInfo, #wikiPhoneInfo{
     border-radius: 4px;
     background-color: var(--explanation_bg_color);
     color: var(--white);
     border : 1px solid var(--white);
     position: fixed;
-    bottom: 109px;
     right: 0;
     margin: 10px;
     cursor: pointer;
@@ -342,15 +306,22 @@ h4 {
     padding: 12px ;
 } 
 
+#wikiPhoneInfo{
+    bottom: 159px;
+}
 
-#contextUpdate{
+#contextInfo{
+    bottom: 109px;
+}
+
+
+#contextUpdate, #wikiPhoneUpdate{
     border-radius: 4px;
     background-color: var(--white);
     color: var(--explanation_bg_color);
     width: 175px;
     height: 39px;
     position: fixed;
-    bottom: 49px;
     right: 4vw;
     margin: 10px;
     cursor: pointer;
@@ -487,4 +458,57 @@ h3 {
 
 p.infoI{
     margin: 0;
+}
+
+
+
+
+@media only screen and (max-width: 800px) {
+    .tag:hover {
+        background-color: inherit;
+        color: rgb(226, 184, 255);
+    }
+
+    .tag:active {
+        color: #210b35;
+        background-color: rgb(226, 184, 255);
+    }
+
+    .mainTitle {
+        font-size: 30px;
+    }
+
+    .subTitle {
+        font-size: 15px;
+    }
+
+    input[type=text] {
+        width: 80vw;
+        margin-right: 10px;
+    }
+
+    .explained {
+        width: max-content;
+    }
+
+    .context_para,
+    .main_context_para {
+        margin: 5px 10px;
+        width: 70vw;
+        align-self: center;
+    }
+
+    .topboxfull {
+        font-size: 15px;
+    }
+
+    .context_title {
+        font-size: 20px;
+    }
+    #inline_wiki_assist{
+        display: none;
+    }
+    #wikiPhoneToggle{
+        display: block;
+    }    
 }

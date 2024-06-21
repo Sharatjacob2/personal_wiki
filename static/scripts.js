@@ -46,6 +46,61 @@ contextToggleButton.addEventListener('mouseleave', function (){
 
 })
 
+wikiPhoneToggleButton = document.getElementById('wikiPhoneToggle');
+wikiPhoneToggleButton.style.backgroundColor = 'var(--explanation_bg_color)';
+wikiPhoneToggleButton.style.color = 'var(--white)';
+wikiPhoneToggleButton.style.border = '2px solid var(--white)';
+wikiPhoneToggleButton.style.width = '35px';
+wikiPhoneToggleButton.style.height = '35px';
+
+wikiPhoneUpdate = document.getElementById('wikiPhoneUpdate');
+wikiPhoneToggleButton.addEventListener('click', function () {
+    wikiPhoneUpdate.style.display = 'flex';
+    
+    wikiAssist = !wikiAssist;
+    if (!wikiAssist) {
+        wikiPhoneToggleButton.style.backgroundColor = 'var(--white)';
+        wikiPhoneToggleButton.style.color = 'var(--explanation_bg_color)';
+        wikiPhoneToggleButton.style.border = 'none';
+        wikiPhoneToggleButton.style.width = '39px';
+        wikiPhoneToggleButton.style.height = '39px';
+        wikiPhoneUpdate.children[0].textContent = 'Wiki Enabled';
+    }
+    else {
+        wikiPhoneToggleButton.style.backgroundColor = 'var(--explanation_bg_color)';
+        wikiPhoneToggleButton.style.color = 'var(--white)';
+        wikiPhoneToggleButton.style.border = '2px solid var(--white)';
+        wikiPhoneToggleButton.style.width = '35px';
+        wikiPhoneToggleButton.style.height = '35px';
+        wikiPhoneUpdate.children[0].textContent = 'Wiki Disabled';
+    }
+    console.log(`WikiAssist is ${wikiAssist}`);
+    setTimeout(() => {
+        wikiPhoneUpdate.classList.add('fade-out');
+    }, 1000); // 3000 milliseconds = 3 seconds
+
+    setTimeout(() => {
+        wikiPhoneUpdate.style.display = 'none';
+        wikiPhoneUpdate.classList.remove('fade-out'); // Reset for next time
+    }, 2000); // 4000 milliseconds = 4 seconds (1 second for the fade-out)
+
+})
+
+wikiPhoneToggleButton.addEventListener('mouseenter', function (){
+    wikiPhoneInfo = document.getElementById('wikiPhoneInfo');
+    wikiPhoneInfo.classList.remove("hidden");
+    wikiPhoneInfo.style.display = 'inline-block';
+})
+
+wikiPhoneToggleButton.addEventListener('mouseleave', function (){
+    wikiPhoneInfo = document.getElementById('wikiPhoneInfo');
+    wikiPhoneInfo.classList.add("hidden");
+    wikiPhoneInfo.style.display = 'none';
+})
+
+
+
+
 
 const heightOfInput = document.getElementById("user-input").style.height;
 document.getElementById("run-btn").style.height = heightOfInput;

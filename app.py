@@ -22,9 +22,20 @@ def llm_output():
 @app.route('/llm_context_output', methods=['POST'])
 def llm_context_output():
     data = request.json
-    topic = data.get("topic")
     context = data.get("context")
+    print(context)
+    context_toggle = data.get("contextSetting")
     wiki_toggle = data.get("wikiToggle")
+
+    if (context_toggle == False):
+            if (wiki_toggle == True):
+                output_explanation, output_tags  =  main_explainer(context)
+                return jsonify({"explanation": output_explanation, "tags": output_tags})
+            else:
+                output_explanation, output_tags, output_context, output_wiki_links  =  wiki_assist(context)
+                return jsonify({"explanation": output_explanation, "tags": output_tags, "context": output_context, "links": output_wiki_links})
+
+    topic = data.get("topic")
     if (wiki_toggle == False):
         output_explanation, output_tags  =  wiki_context_assist(context, topic)
         return jsonify({"explanation": output_explanation, "tags": output_tags})

@@ -39,6 +39,7 @@ body {
 
 .context_para,
 .main_context_para {
+    position: relative;
     border-style: hidden;
     padding: 25px;
     border-radius: 5px;
@@ -48,6 +49,7 @@ body {
     font-size: 20px;
     font-family: Josefin Slab;
     font-weight: 300;
+    margin-top: 15px;
 }
 
 .tag {
@@ -203,12 +205,13 @@ h4 {
 }
 
 .close {
-    position: absolute;
+    position:absolute;
     top: 0.1vw;
     right: 2vw;
     font-size: 50px;
     font-weight: 500;
     cursor: pointer;
+    display: inline;
 }
 
 @media only screen and (max-width: 800px) {
@@ -305,6 +308,63 @@ h4 {
     cursor: pointer;
     opacity: 0.3;
 }
+
+#contextToggle {
+    border-radius: 4px;
+    background-color: var(--white);
+    color: var(--explanation_bg_color);
+    width: 39px;
+    height: 39px;
+    position: fixed;
+    bottom: 49px;
+    right: 0;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+#contextInfo{
+    border-radius: 4px;
+    background-color: var(--explanation_bg_color);
+    color: var(--white);
+    border : 1px solid var(--white);
+    position: fixed;
+    bottom: 109px;
+    right: 0;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 300;  
+    text-align: left;
+    width: 210px;
+    height: 100px;
+    padding: 12px ;
+} 
+
+
+#contextUpdate{
+    border-radius: 4px;
+    background-color: var(--white);
+    color: var(--explanation_bg_color);
+    width: 175px;
+    height: 39px;
+    position: fixed;
+    bottom: 49px;
+    right: 4vw;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 900;
+    transition: opacity 1s ease-in-out;
+    white-space: nowrap;
+    display: none;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
 
 a {
     opacity: 0.6;

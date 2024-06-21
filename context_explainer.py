@@ -172,6 +172,7 @@ def wiki_assist(temp_topic):
   if len(topic) < 1:
     return "Unrecognizable term has been entered, please rephrase or search different topic.", tags, context, topic
   page_py = wiki_wiki.page(topic[0])
+  context = page_py.summary
   print(topic)
 
   sys_msg = '''<s> [INST] You take in the Wikipedia summary page of a specific topic and you give a large detailed explanation, but in the style of a reasonably educated layman. 
@@ -214,7 +215,7 @@ def wiki_context_assist(context_topic, topic):
     
     wiki_wiki = wikipediaapi.Wikipedia('personal-wiki (sharatjacob2@gmail.com)', 'en')
     true_topic = context_topic
-    context_topics = wikipedia.search(context_topic)
+    context_topics = wikipedia.search(context_topic + " " + topic)
     tags = []
     if len(context_topics) < 1:
       return "Unrecognizable term has been entered, please rephrase or search different topic.", tags
@@ -236,8 +237,15 @@ def wiki_context_assist(context_topic, topic):
     Explain {context_topic} in the context of {topic}. Use multiple paragraphs.''' 
     prompt = f"{system_message} [/INST]"
     context_explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
-    tags = tagger(context_explanation)
-    tags = tag_handler(tags, true_topic)
+    tags = get_wikipedia_intro_links(context_topic)
+    print(tags)
+    
+    i = 0
+    while i < len(tags):
+      if true_topic in tags[i]:
+        tags.pop(i)
+        continue
+      i = i + 1
 
     temp = r"%r" % context_explanation
     temp = temp[1:-1]

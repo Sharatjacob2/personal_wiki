@@ -170,7 +170,7 @@ function generate_main_explanation(userInput) {
                 const regex = new RegExp(`\\b${escapeRegExp(word)}\\b`, 'gi');
                 if (regex.test(formattedResult)) {
                     formattedResult = formattedResult.replace(regex, `<button class="tag" data-maintopicvalue="${userInput}">` + word + `</button>`);
-                    console.log(word)
+                    // console.log(word)
                 }
                 else {
                     console.log("didnt work")
@@ -245,7 +245,7 @@ function newTag(button) {
                 const regex = new RegExp(`\\b${escapeRegExp(word)}\\b`, 'gi');
                 if (regex.test(formattedResult)) {
                     formattedResult = formattedResult.replace(regex, `<button class="tag" data-maintopicvalue="${context_topic}">` + word + `</button>`);
-                    console.log(word)
+                    // console.log(word)
                 }
                 else {
                     console.log("didnt work")

@@ -23,7 +23,6 @@ def llm_output():
 def llm_context_output():
     data = request.json
     context = data.get("context")
-    print(context)
     context_toggle = data.get("contextSetting")
     wiki_toggle = data.get("wikiToggle")
 

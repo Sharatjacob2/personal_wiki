@@ -15,7 +15,7 @@ llm = InferenceClient(model=repo_id,token=token)
 def prompt_writer(sys_msg, token_count):
   # user_message = f"Q: {user_input} A: "
   prompt = f"<s>[INST] {sys_msg} Answer:"
-  print("prompter working")
+  # print("prompter working")
 
   # Run the model
   temp = llm.text_generation(
@@ -23,20 +23,20 @@ def prompt_writer(sys_msg, token_count):
   max_new_tokens=token_count, # Generate upto
   stop_sequences=["</s>"],
   ) # 
-  print("prompter generated")
+  # print("prompter generated")
 
   temp = temp[temp.find("Answer:")+2:]
   temp = r"%r" % temp
   temp = temp[1:-1]
   temp = temp.replace(r"\n","<br>")
   temp = temp.replace(r"\'","")
-  print(temp)
+  # print(temp)
   return temp
 
 
 # llm that generates the first explanation
 def explainer(topic):
-  print("explainer working")
+  # print("explainer working")
   system_message = '''You are a proficient scientist, known for your adept teaching skills. 
   You are skilled at taking a topic and answering with a large detailed explanation. 
   Avoid bullet points. [/INST] 
@@ -47,7 +47,7 @@ def explainer(topic):
 
 # llm that identifies all the relevant terms in the explanation
 def tagger(explanation):
-  print("tagger working")
+  # print("tagger working")
   system_message = '''You identify ALL the terms in a paragraph that could benefit explanation/expansion. 
   You are encouraged to list NAMES in the paragraph.
   You print the terms ONLY as a NUMBERED list. 
@@ -67,10 +67,10 @@ def tagger(explanation):
 
 # llm that explains the new topic in context of the old topic
 def in_context_explainer(context_topic, topic):
-  print("in_context_explainer working")
+  # print("in_context_explainer working")
   system_message = f'''You are uniquely skilled at explaining one topic in the context of another topic. You answer with a good explanation of the topic and why it matters to the other topic. [/INST] 
   Explain {context_topic} in the context of {topic}. '''
-  context_explanation = prompt_writer(system_message, 512)
+  context_explanation = prompt_writer(system_message, 1024)
   tags = tagger(context_explanation)
   tags = tag_handler(tags, context_topic)
   return context_explanation, tags
@@ -89,16 +89,16 @@ def main_explainer(topic):
 # bunch of wild hard-coded data processing style stuff because the llm will not listen to me
 def tag_handler(unhandled_tags, topic_check):
   format_check = f'<button class="tag" data-maintopicvalue="{topic_check}"></button>'
-  print(format_check)
+  # print(format_check)
   tags = unhandled_tags
   tags = re.split('\d.',tags)
   tags.pop(0)
   # tags_length = len(tags)
   i = 0
-  print(tags)
+  # print(tags)
 
   while i < len(tags):
-    print(i)
+    # print(i)
     if len(tags[i]) <= 3:
       tags.pop(i)
       continue
@@ -149,7 +149,7 @@ def tag_handler(unhandled_tags, topic_check):
     if 'Data' in tags[i]:
       tags.pop(i)
       continue
-    print(tags[i])
+    # print(tags[i])
     i = i+1
 
   while i < len(tags):
@@ -157,7 +157,7 @@ def tag_handler(unhandled_tags, topic_check):
         tags.pop(i)
         continue
 
-  print(tags)
+  # print(tags)
   return tags
 
 
@@ -173,7 +173,7 @@ def wiki_assist(temp_topic):
     return "Unrecognizable term has been entered, please rephrase or search different topic.", tags, context, topic
   page_py = wiki_wiki.page(topic[0])
   context = page_py.summary
-  print(topic)
+  # print(topic)
 
   sys_msg = '''<s> [INST] You take in the Wikipedia summary page of a specific topic and you give a large detailed explanation, but in the style of a reasonably educated layman. 
   Speak formally. Add details from the summary provided. Avoid addressing the individual you are explaining. [/INST] 
@@ -184,18 +184,21 @@ def wiki_assist(temp_topic):
   sys_msg = sys_msg + user_topic + wikipedia_context
 
   prompt = f"{sys_msg} [/INST]"
-  explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
+  try:
+    explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
+  except Exception as e:
+    explanation = e
   tags = get_wikipedia_intro_links(topic[0])
-  print(tags)
+  # print(tags)
 
   format_check = f'<button class="tag" data-maintopicvalue="{temp_topic.upper()}"></button>'
-  print(format_check)
+  # print(format_check)
   i = 0
   while i < len(tags):
-      print(i)
-      print(tags[i])
+      # print(i)
+      # print(tags[i])
       if tags[i].upper() in format_check:
-        print(i)
+        # print(i)
         tags.pop(i)
         continue
       i = i + 1
@@ -204,7 +207,7 @@ def wiki_assist(temp_topic):
   temp = temp[1:-1]
   temp = temp.replace(r"\n","<br>")
   temp = temp.replace(r"\'","")
-  print(temp)
+  # print(temp)
 
   if len(topic) < 10:
     topic = topic[1:9]
@@ -238,7 +241,7 @@ def wiki_context_assist(context_topic, topic):
     prompt = f"{system_message} [/INST]"
     context_explanation = llm.text_generation(prompt, stop_sequences=["</s>"],max_new_tokens=1024)
     tags = get_wikipedia_intro_links(context_topic)
-    print(tags)
+    # print(tags)
     
     i = 0
     while i < len(tags):
@@ -251,6 +254,6 @@ def wiki_context_assist(context_topic, topic):
     temp = temp[1:-1]
     temp = temp.replace(r"\n","<br>")
     temp = temp.replace(r"\'","")
-    print(temp)
+    # print(temp)
 
     return temp, tags

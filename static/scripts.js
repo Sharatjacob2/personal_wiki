@@ -99,12 +99,9 @@ wikiPhoneToggleButton.addEventListener('mouseleave', function (){
 })
 
 
-
-
-
 const heightOfInput = document.getElementById("user-input").style.height;
 document.getElementById("run-btn").style.height = heightOfInput;
-document.getElementById("extra-info").style.height = heightOfInput;
+
 
 let wikiAssist = true;
 
@@ -267,6 +264,32 @@ function newTag(button) {
         });
     button.disabled = false;
 }
+
+let wikiMode = false;
+
+document.getElementById("wikiMode").addEventListener('click', function () {
+    const root = document.documentElement;
+    wikiMode = !wikiMode;
+
+    if (wikiMode) {
+    root.style.setProperty('--darkpink', '#efefef');
+    root.style.setProperty('--lightpink', 'lightgrey');
+    root.style.setProperty('--white', 'black');
+    root.style.setProperty('--explanation_bg_color', 'white');
+    root.style.setProperty('--tag_color', 'black');
+    
+    }
+    else {
+    root.style.setProperty('--darkpink', '#0e0319');
+    root.style.setProperty('--lightpink', '#e2b8ff');
+    root.style.setProperty('--white', '#faebd7');
+    root.style.setProperty('--explanation_bg_color', '#210b35');    
+    root.style.setProperty('--tag_color', '#e2b8ff');
+
+    }
+
+});
+
 
 
 

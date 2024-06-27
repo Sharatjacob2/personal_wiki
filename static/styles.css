@@ -3,7 +3,7 @@ body {
     text-align: center;
     color: var(--white);
     margin-top: 50px;
-    background-color: #0e0319;
+    background-color: var(--darkpink);
     overflow: visible;
 }
 
@@ -12,6 +12,7 @@ body {
     --lightpink: #e2b8ff;
     --white: #faebd7;
     --explanation_bg_color: #210b35;
+    --tag_color: #e2b8ff;
 }
 
 .explained {
@@ -54,18 +55,18 @@ body {
 
 .tag {
     padding: 1px 3px;
-    color: var(--lightpink);
+    color: var(--tag_color);
     border: none;
     background-color: var(--explanation_bg_color);
     font-size: 20px;
     font-family: Josefin Slab;
-    font-weight: 300;
+    font-weight: 500;
 
 }
 
 .tag:hover {
     color: var(--explanation_bg_color);
-    background-color: var(--lightpink);
+    background-color: var(--tag_color);
     padding: 3px 6px;
     border-radius: 2px;
     cursor: pointer;
@@ -79,7 +80,7 @@ input[type=text] {
     padding: 0px;
     font-family: Josefin Slab;
     border: none;
-    border-bottom: 4px solid antiquewhite;
+    border-bottom: 4px solid var(--white);
     font-weight: 700;
     margin: 0px;
     font-size: 20px;
@@ -87,7 +88,7 @@ input[type=text] {
 }
 
 .run-button {
-    background-color: var(--lightpink);
+    background-color: var(--white);
     color: var(--darkpink);
     border: none;
     border-radius: 3px;
@@ -119,8 +120,8 @@ input[type=text] {
 }
 
 .run-button:hover {
-    background-color: var(--darkpink);
-    color: var(--lightpink);
+    background-color: var(--explanation_bg_color);
+    color: var(--white);
 }
 
 .footer {
@@ -151,12 +152,12 @@ input[type=text] {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: rgb(226, 184, 255);
+    background: var(--lightpink);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgb(33, 11, 53);
+    background: var(--darkpink);
     /* border-radius: 4px; */
     width: 10px;
 
@@ -173,7 +174,7 @@ input[type=text] {
 .context_title_line {
     width: 100%;
     height: 1px;
-    background-color: antiquewhite;
+    background-color: var(--white);
     margin-bottom: 15px;
     opacity: 0.5;
 }
@@ -184,8 +185,8 @@ h4 {
 }
 
 .topboxfull {
-    color: antiquewhite;
-    background-color: #210b35;
+    color: var(--white);
+    background-color: var(--darkpink);
     width: 70vw;
     border-radius: 5px;
     position: fixed;
@@ -205,7 +206,7 @@ h4 {
 }
 
 .close {
-    position:absolute;
+    position: absolute;
     top: 0.1vw;
     right: 2vw;
     font-size: 50px;
@@ -219,7 +220,7 @@ h4 {
 }
 
 .number {
-    background-color: antiquewhite;
+    background-color: var(--white);
     border-radius: 10px;
     padding: 2px;
     color: var(--explanation_bg_color);
@@ -262,7 +263,7 @@ h4 {
     opacity: 0.3;
 }
 
-#contextToggle, #wikiPhoneToggle{
+.toggle {
     border-radius: 4px;
     background-color: var(--white);
     color: var(--explanation_bg_color);
@@ -276,46 +277,54 @@ h4 {
     font-weight: 900;
 }
 
-#contextToggle, #contextUpdate{
+#contextToggle,
+#contextUpdate {
     bottom: 49px;
 }
 
-#wikiPhoneToggle, #wikiPhoneUpdate{
+#wikiPhoneToggle,
+#wikiPhoneUpdate {
     bottom: 98px;
 }
 
-#wikiPhoneToggle{
-    display: none;
+#wikiMode {
+    bottom: 147px;
 }
 
+/* #wikiPhoneToggle {
+    display: none;
+} */
 
-#contextInfo, #wikiPhoneInfo{
+
+#contextInfo,
+#wikiPhoneInfo {
     border-radius: 4px;
     background-color: var(--explanation_bg_color);
     color: var(--white);
-    border : 1px solid var(--white);
+    border: 1px solid var(--white);
     position: fixed;
     right: 0;
     margin: 10px;
     cursor: pointer;
     font-size: 15px;
-    font-weight: 300;  
+    font-weight: 300;
     text-align: left;
     width: 210px;
     height: 100px;
-    padding: 12px ;
-} 
+    padding: 12px;
+}
 
-#wikiPhoneInfo{
+#wikiPhoneInfo {
     bottom: 159px;
 }
 
-#contextInfo{
+#contextInfo {
     bottom: 109px;
 }
 
 
-#contextUpdate, #wikiPhoneUpdate{
+#contextUpdate,
+#wikiPhoneUpdate {
     border-radius: 4px;
     background-color: var(--white);
     color: var(--explanation_bg_color);
@@ -439,9 +448,9 @@ h3 {
     /* Add transition for smooth animation */
 }
 
-.info{
+.info {
     border-radius: 20px;
-    display:inline-block;
+    display: inline-block;
     background-color: inherit;
     border-width: 2px;
     border-color: var(--white);
@@ -456,22 +465,28 @@ h3 {
     cursor: pointer;
 }
 
-p.infoI{
+p.infoI {
+    margin: 0;
+}
+
+.centered_para_in_div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: 0;
 }
 
 
-
-
 @media only screen and (max-width: 800px) {
     .tag:hover {
-        background-color: inherit;
-        color: rgb(226, 184, 255);
+        background-color: var(--white);
+        color: var(--darkpink);
     }
 
     .tag:active {
-        color: #210b35;
-        background-color: rgb(226, 184, 255);
+        color: var(--darkpink);
+        background-color: var(--tag_color);
     }
 
     .mainTitle {
@@ -505,10 +520,13 @@ p.infoI{
     .context_title {
         font-size: 20px;
     }
-    #inline_wiki_assist{
+
+    #inline_wiki_assist {
         display: none;
     }
-    #wikiPhoneToggle{
+
+    #wikiPhoneToggle {
         display: block;
-    }    
+    }
 }
+

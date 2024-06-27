@@ -102,6 +102,19 @@ wikiPhoneToggleButton.addEventListener('mouseleave', function (){
 const heightOfInput = document.getElementById("user-input").style.height;
 document.getElementById("run-btn").style.height = heightOfInput;
 
+assistField = document.getElementById("inline_wiki_assist");
+userInputField = document.getElementById("user-input");
+const referenceLeft = userInputField.getBoundingClientRect().left;
+
+// Get the left position of the target div relative to its offset parent
+const targetParentLeft = assistField.offsetParent.getBoundingClientRect().left;
+
+// Calculate the new left value relative to the offset parent
+const newLeft = referenceLeft - targetParentLeft + 10;
+
+// Apply the new left value to the target div
+assistField.style.left = newLeft + 'px';
+
 
 let wikiAssist = true;
 
@@ -270,6 +283,8 @@ let wikiMode = false;
 document.getElementById("wikiMode").addEventListener('click', function () {
     const root = document.documentElement;
     wikiMode = !wikiMode;
+    const contentDiv = document.getElementById('explanation');
+    const paragraphs = contentDiv.getElementsByTagName('p');
 
     if (wikiMode) {
     root.style.setProperty('--darkpink', '#efefef');
@@ -277,7 +292,10 @@ document.getElementById("wikiMode").addEventListener('click', function () {
     root.style.setProperty('--white', 'black');
     root.style.setProperty('--explanation_bg_color', 'white');
     root.style.setProperty('--tag_color', 'black');
-    
+    for (let paragraph of paragraphs) {
+        paragraph.style.fontWeight = '400'; // Change font weight to bold
+    }
+
     }
     else {
     root.style.setProperty('--darkpink', '#0e0319');
@@ -285,6 +303,9 @@ document.getElementById("wikiMode").addEventListener('click', function () {
     root.style.setProperty('--white', '#faebd7');
     root.style.setProperty('--explanation_bg_color', '#210b35');    
     root.style.setProperty('--tag_color', '#e2b8ff');
+    for (let paragraph of paragraphs) {
+        paragraph.style.fontWeight = '300'; // Change font weight to bold
+    }
 
     }
 

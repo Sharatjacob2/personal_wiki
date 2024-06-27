@@ -404,7 +404,6 @@ a:hover {
 }
 
 #inline_wiki_assist {
-    left: 20vw;
     position: absolute;
     margin-top: 0px;
     opacity: 0.3;

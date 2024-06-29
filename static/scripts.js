@@ -142,6 +142,7 @@ let wikiLinks = [];
 
 document.getElementById('run-btn').addEventListener('click', function () {
     const userInput = document.getElementById('user-input').value;
+    document.getElementById('customMainTopic').value = userInput;
     generate_main_explanation(userInput);
 });
 
@@ -311,6 +312,30 @@ document.getElementById("wikiMode").addEventListener('click', function () {
 
 });
 
+let customContextToggle = false;
+document.getElementById('customContext').addEventListener('click', function (){
+    customContextToggle = !customContextToggle;
+    if(customContextToggle){
+        document.getElementById('customContextInput').classList.remove('hidden');
+    }
+    else {
+        document.getElementById('customContextInput').classList.add('hidden');
+    }
+});
+
+
+document.getElementById("customGenerate").addEventListener('click', function () {   
+    customTopic = document.getElementById('customMainTopic').value;
+    customContext = document.getElementById('customContextTopic').value;
+    console.log("custom input not working");
+    const tempdiv = document.createElement('div');
+    tempdiv.innerHTML = `<div><button id="tempCustomContext" data-maintopicvalue="${customTopic}">` + customContext + `</button></div>`;
+    tempdiv.className = 'context_para hidden';
+
+    container_explanation.insertBefore(tempdiv, container_explanation.children[0]);
+    btn = document.getElementById('tempCustomContext');
+    newTag(btn);
+});
 
 
 

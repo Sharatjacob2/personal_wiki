@@ -103,17 +103,15 @@ const heightOfInput = document.getElementById("user-input").style.height;
 document.getElementById("run-btn").style.height = heightOfInput;
 
 assistField = document.getElementById("inline_wiki_assist");
-userInputField = document.getElementById("user-input");
-const referenceLeft = userInputField.getBoundingClientRect().left;
+const computedStyle = window.getComputedStyle(assistField);
 
-// Get the left position of the target div relative to its offset parent
-const targetParentLeft = assistField.offsetParent.getBoundingClientRect().left;
-
-// Calculate the new left value relative to the offset parent
-const newLeft = referenceLeft - targetParentLeft + 10;
-
-// Apply the new left value to the target div
-assistField.style.left = newLeft + 'px';
+if (computedStyle.display != 'none'){
+    userInputField = document.getElementById("user-input");
+    const referenceLeft = userInputField.getBoundingClientRect().left;
+    const targetParentLeft = assistField.offsetParent.getBoundingClientRect().left;
+    const newLeft = referenceLeft - targetParentLeft + 10;
+    assistField.style.left = newLeft + 'px';    
+}
 
 
 let wikiAssist = true;
@@ -281,7 +279,19 @@ function newTag(button) {
 
 let wikiMode = false;
 
+console.log(window.innerWidth);
+if (window.innerWidth >= 600){
 document.getElementById("wikiMode").addEventListener('click', function () {
+    WikiMode();
+});}
+
+else {
+    document.getElementById("wikiMode").addEventListener('touchstart', function () {
+        WikiMode();
+    });    
+}
+
+function WikiMode(){
     const root = document.documentElement;
     wikiMode = !wikiMode;
     const contentDiv = document.getElementById('explanation');
@@ -310,7 +320,8 @@ document.getElementById("wikiMode").addEventListener('click', function () {
 
     }
 
-});
+
+}
 
 let customContextToggle = false;
 document.getElementById('customContext').addEventListener('click', function (){

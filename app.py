@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify
 from context_explainer import main_explainer, in_context_explainer, wiki_assist, wiki_context_assist
 
 app = Flask(__name__)
